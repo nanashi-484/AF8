@@ -19,11 +19,11 @@ endmodule
 module af8_multiplier (
     input  logic       sign_a,
     input  logic [3:0] exp_a,
-    input  logic [3:0] man_a,
+    input  logic [2:0] man_a,
     
     input  logic       sign_w,
     input  logic [3:0] exp_w,
-    input  logic [3:0] man_w,
+    input  logic [2:0] man_w,
     
     output logic               sign_prod,
     output logic signed  [5:0] exp_prod_base4,
@@ -33,20 +33,20 @@ module af8_multiplier (
     always_comb begin
         sign_prod = sign_a ^ sign_w;
         man_prod = man_a * man_w;
-        exp_prod_base4 = signed'({2'b00, exp_a}) + signed'({2'b00, exp_w}) - 6'sd7;
+        exp_prod_base4 = signed'({2'b00, exp_a}) + signed'({2'b00, exp_w}) - 6'sd14;
     end
 
 endmodule
 
 module af8_to_fp32_aligner (
     input  logic signed [5:0]  exp_prod_base4,
-    input  logic        [5:0]  man_prod, // 6-bit (格式: XXXX.XX)
+    input  logic        [5:0]  man_prod,
     
-    input  logic signed [9:0]  exp_acc,  // FP32 累加器指數 (已扣除 Bias 127)
-    input  logic        [23:0] man_acc,  // 24-bit (格式: X.XXXXXXXXXXXXXXXXXXXXXXX)
+    input  logic signed [9:0]  exp_acc,
+    input  logic        [23:0] man_acc,
     
     output logic signed [9:0]  exp_common,
-    output logic        [26:0] aligned_man_prod, // 擴展到 27-bit 以確保小數點對齊
+    output logic        [26:0] aligned_man_prod,
     output logic        [26:0] aligned_man_acc
 );
 
