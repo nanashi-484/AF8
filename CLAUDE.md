@@ -47,18 +47,50 @@ AF8_MAC/    ← AF8 的 RTL 模組（.sv），含 01_RTL / 00_TESTBED / 02_SYN /
 ## 開發階段（依序進行）
 
 1. **規格定義** — 閱讀論文 AF8 格式定義，閱讀 `docs/FP8_E4M3_MAC_Unit.md` 與 `docs/AF8_MAC_Unit.md`，畫出 Baseline 與 AF8 各自的 MAC Datapath Block Diagram（Decoder → Multiplier → Aligner → Adder → Normalizer/Rounder → Accumulator Register），比較架構差異
-2. **Python 軟體建模** — 分別實作 Baseline FP8_E4M3 類別與 AF8 類別，實作 MAC 運算（Multiply + Accumulate，內部使用高精度累加器），兩種格式各生成至少 10,000 組 Golden Pattern `.dat`
+2. ~~**Python 軟體建模**~~（已跳過）— 直接使用 RTL 模擬進行功能驗證，不產生 Golden Pattern
 3. **Verilog RTL 設計** — Baseline: Decoder、4×4 Multiplier、Full Barrel Shifter Aligner、Adder、Normalizer/Rounder (LZD)、Accumulator Register。AF8: Decoder（無 Hidden Bit、Base-4）、3×3 Multiplier、2-bit MUX Tree Aligner、Adder、Simplified Normalizer（One-step Subnormal）、Accumulator Register。兩者盡可能共用 Adder 與 Accumulator Register
-4. **功能驗證** — 分別撰寫 Baseline 與 AF8 的 Testbench，讀取 Golden Pattern 進行比對，用 GTKWave debug
-5. **邏輯合成與分析** — Yosys/Design Compiler 合成 + OpenSTA/PrimeTime 時序功耗分析，使用學校提供的 PDK，產出 Baseline vs. AF8 的比較表格
+4. **功能驗證** — 分別撰寫 Baseline 與 AF8 的 Testbench，直接在 Testbench 內產生測試向量與預期結果進行比對，用 GTKWave debug
+5. **邏輯合成與分析** — Design Compiler 合成 + PrimeTime 時序功耗分析，使用學校提供的 PDK，產出 Baseline vs. AF8 的比較表格
+
+### 目前進度
+
+| 模組 | 負責人 | 狀態 | 檔案 |
+|------|--------|------|------|
+| Decoder | lunn-rocks | 待實作 | |
+| Multiplier (4×4) | lunn-rocks | 待實作 | |
+| Aligner (Barrel Shifter) | lunn-rocks | 待實作 | |
+| Adder | **nanashi-484** | ✅ 完成 | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| Normalizer / Rounder | **nanashi-484** | ✅ 完成 | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| Accumulator Register | **nanashi-484** | ✅ 完成 | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| 頂層 MAC 整合 | **nanashi-484** | 待實作 | |
+
+詳細模組規格文件：`docs/FP8_MAC/01_Adder.md`、`docs/FP8_MAC/02_Normalizer.md`、`docs/FP8_MAC/03_Accumulator_Register.md`
 
 ## 工具鏈
 
-- **Python 3** + NumPy — 軟體建模與 Golden Pattern 生成
-- **Icarus Verilog** (`iverilog`) — RTL 模擬，搭配 **GTKWave** 看波形
-- **Yosys** — 邏輯合成
-- **OpenSTA** — 時序與功耗分析
+- **Synopsys VCS** — RTL 與 Gate-level 模擬（工作站）
+- **Synopsys Design Compiler** — 邏輯合成（工作站）
+- **Synopsys PrimeTime** — 時序與功耗分析（工作站）
+- **Icarus Verilog** (`iverilog`) — 本地輕量 RTL 模擬，搭配 **GTKWave** 看波形
+- **Yosys** — 本地輕量邏輯合成（工作站前自測）
 - **學校提供的 PDK** — 製程標準元件庫（.lib 檔）
+
+## 工作站測試與合成流程
+
+於工作站環境依序執行以下腳本，分別完成 RTL 模擬、電路合成與 Gate-level 模擬：
+
+```bash
+# 1. RTL 模擬（VCS）
+cd $專案/01_RTL && ./01_run_vcs_rtl
+
+# 2. 電路合成（Design Compiler）
+cd $專案/02_SYN && ./01_run_dc
+
+# 3. Gate-level 模擬（VCS + SDF）
+cd $專案/03_GATE && ./01_run_vcs_gate
+```
+
+每個步驟的輸出結果（模擬 log、合成報告、時序/功耗報告）請保留於對應目錄中。
 
 ## 關鍵設計要點
 
@@ -67,3 +99,13 @@ AF8_MAC/    ← AF8 的 RTL 模組（.sv），含 01_RTL / 00_TESTBED / 02_SYN /
 - **Normalizer / LZD**：Baseline 的前導零檢測（LZD）與多級左移是 Critical Path 之一；AF8 的 One-step Subnormal 完全消除 LZD
 - **Subnormal 處理**：Baseline 需分支判斷（Hidden bit = 0）+ LZD 正規化；AF8 僅有 M=000 與 M=001 兩種次正規數，無分支、無多級移位
 - **指數基底差異**：Base-2 (Baseline) vs Base-4 (AF8)，影響指數加法器與 Aligner 的位移量計算方式
+
+## 已確定的設計決策
+
+- **管線深度**：單週期 MAC（純組合邏輯 + Accumulator Register），與論文 Table III 比較方式一致
+- **內部精度**：FP32 尾數精度（24-bit mantissa + 4 guard bits），`MANT_WIDTH = 28`
+- **指數 Bias**：內部統一使用 bias=7（與 FP8 E4M3 相同），8-bit 指數欄位
+- **捨入模式**：Round to Nearest Even (RNE)，`round = G & (R | S | LSB)`
+- **NaN 編碼**：`{sign, 4'b1111, 3'b100}`（E=15 皆視為 NaN，E4M3 無 Infinity）
+- **Adder 設計**：大減小架構，保證輸出 mantissa 恆為正，Normalizer 只需單向 LZD
+- **Accumulator Register**：非同步 reset (active-low)，初始值為零，每週期 latch
