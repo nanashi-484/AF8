@@ -193,15 +193,26 @@ package fp8_pattern_pkg;
     endfunction
 
     //===========================================================================
+    // Internal accumulator state (package-level, shared across calls)
+    //===========================================================================
+    real mac_acc_state = 0.0;
+
+    //===========================================================================
+    // mac_clear_acc — Explicitly reset the internal accumulator
+    //===========================================================================
+    function automatic void mac_clear_acc();
+        mac_acc_state = 0.0;
+    endfunction
+
+    //===========================================================================
     // fp8_mac_ref — Reference MAC: acc = (acc_clear ? 0 : acc) + A × B
-    //   acc_state is modified in-place and holds the internal accumulator.
+    //   Uses package-level mac_acc_state to maintain accumulator across calls.
     //   Returns FP8 E4M3 rounded result.
     //===========================================================================
     function automatic logic [7:0] fp8_mac_ref(
         input  logic [7:0] a,
         input  logic [7:0] b,
-        input  logic        acc_clear,
-        inout  real         acc_state
+        input  logic        acc_clear
     );
         automatic real    a_val, b_val;
         automatic logic   prod_sign;
@@ -210,11 +221,11 @@ package fp8_pattern_pkg;
 
         // Clear accumulator before computing
         if (acc_clear)
-            acc_state = 0.0;
+            mac_acc_state = 0.0;
 
         // NaN input → NaN output (poisons accumulator)
         if (fp8_is_nan(a) || fp8_is_nan(b)) begin
-            acc_state = 0.0;
+            mac_acc_state = 0.0;
             return FP8_NAN;
         end
 
@@ -222,28 +233,28 @@ package fp8_pattern_pkg;
         if (fp8_is_zero(a) || fp8_is_zero(b)) begin
             if (acc_clear) begin
                 // Fresh MAC: result is signed zero from product sign
-                acc_state = 0.0;
+                mac_acc_state = 0.0;
                 return {prod_sign, 4'd0, 3'd0};
             end
             // Continue accumulation: zero product doesn't change accumulator
-            return real_to_fp8(acc_state);
+            return real_to_fp8(mac_acc_state);
         end
 
         a_val = fp8_to_real(a);
         b_val = fp8_to_real(b);
 
         // Accumulate product
-        acc_state = acc_state + (a_val * b_val);
+        mac_acc_state = mac_acc_state + (a_val * b_val);
 
         // Handle exact zero result preserving sign
-        if (acc_state == 0.0) begin
+        if (mac_acc_state == 0.0) begin
             if (acc_clear)
                 return {prod_sign, 4'd0, 3'd0};
             else
                 return 8'h00;
         end
 
-        return real_to_fp8(acc_state);
+        return real_to_fp8(mac_acc_state);
     endfunction
 
 endpackage
