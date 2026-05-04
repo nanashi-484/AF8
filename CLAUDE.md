@@ -23,8 +23,8 @@ AMAX (Block-Scaling) 是張量量化預處理單元，不屬於 MAC 資料路徑
 兩人的 SystemVerilog 檔案分別存放於各格式的目錄中，最後合併：
 
 ```
-FP8_E4M3/   ← Baseline FP8 E4M3 的 RTL 模組（.sv）
-AF8/        ← AF8 的 RTL 模組（.sv）
+FP8_MAC/    ← Baseline FP8 E4M3 的 RTL 模組（.sv），含 01_RTL / 00_TESTBED / 02_SYN / 03_GATE
+AF8_MAC/    ← AF8 的 RTL 模組（.sv），含 01_RTL / 00_TESTBED / 02_SYN / 03_GATE
 ```
 
 ## FP8 E4M3 格式 (Baseline)
