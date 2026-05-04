@@ -49,7 +49,7 @@ AF8_MAC/    ← AF8 的 RTL 模組（.sv），含 01_RTL / 00_TESTBED / 02_SYN /
 1. **規格定義** — 閱讀論文 AF8 格式定義，閱讀 `docs/FP8_E4M3_MAC_Unit.md` 與 `docs/AF8_MAC_Unit.md`，畫出 Baseline 與 AF8 各自的 MAC Datapath Block Diagram（Decoder → Multiplier → Aligner → Adder → Normalizer/Rounder → Accumulator Register），比較架構差異
 2. ~~**Python 軟體建模**~~（已跳過）— 直接使用 RTL 模擬進行功能驗證，不產生 Golden Pattern
 3. **Verilog RTL 設計** — Baseline: Decoder、4×4 Multiplier、Full Barrel Shifter Aligner、Adder、Normalizer/Rounder (LZD)、Accumulator Register。AF8: Decoder（無 Hidden Bit、Base-4）、3×3 Multiplier、2-bit MUX Tree Aligner、Adder、Simplified Normalizer（One-step Subnormal）、Accumulator Register。兩者盡可能共用 Adder 與 Accumulator Register
-4. **功能驗證** — 分別撰寫 Baseline 與 AF8 的 Testbench，直接在 Testbench 內產生測試向量與預期結果進行比對，用 GTKWave debug
+4. **功能驗證** — 使用內建參考模型（`PATTERN.sv`）的自我驗證 Testbench（`TESTBED.sv`），直接在測試中產生預期結果進行比對。不依賴外部 Golden Pattern 檔案。
 5. **邏輯合成與分析** — Design Compiler 合成 + PrimeTime 時序功耗分析，使用學校提供的 PDK，產出 Baseline vs. AF8 的比較表格
 
 ### 目前進度
@@ -63,8 +63,15 @@ AF8_MAC/    ← AF8 的 RTL 模組（.sv），含 01_RTL / 00_TESTBED / 02_SYN /
 | Normalizer / Rounder | **nanashi-484** | ✅ 完成 | `FP8_MAC/01_RTL/FP8_MAC.sv` |
 | Accumulator Register | **nanashi-484** | ✅ 完成 | `FP8_MAC/01_RTL/FP8_MAC.sv` |
 | 頂層 MAC 整合 | **nanashi-484** | 待實作 | |
+| Testbench (TESTBED) | **nanashi-484** | ✅ 完成 | `FP8_MAC/00_TESTBED/TESTBED.sv` |
+| Reference Model (PATTERN) | **nanashi-484** | ✅ 完成 | `FP8_MAC/00_TESTBED/PATTERN.sv` |
 
-詳細模組規格文件：`docs/FP8_MAC/01_Adder.md`、`docs/FP8_MAC/02_Normalizer.md`、`docs/FP8_MAC/03_Accumulator_Register.md`
+詳細模組規格文件：
+- `docs/FP8_MAC/01_Adder.md`
+- `docs/FP8_MAC/02_Normalizer.md`
+- `docs/FP8_MAC/03_Accumulator_Register.md`
+- `docs/FP8_MAC/PATTERN.md` — FP8 E4M3 參考模型（package 內各函式的演算法與格式對應）
+- `docs/FP8_MAC/TESTBED.md` — Testbench 架構、DUT 介面合約、測試流程說明
 
 ## 工具鏈
 
