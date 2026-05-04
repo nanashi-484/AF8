@@ -13,6 +13,20 @@ AMAX (Block-Scaling) 是張量量化預處理單元，不屬於 MAC 資料路徑
 
 詳細實作指引請參考 `docs/運算架構概覽.md`、`docs/FP8_E4M3_MAC_Unit.md`、`docs/AF8_MAC_Unit.md`。參考論文：`docs/The AetherFloat Family.pdf`
 
+## 協作分工
+
+此專案為兩人協作，MAC 資料路徑模組分工如下：
+
+- **lunn-rocks**：Decoder、Multiplier、Aligner（含之前的模組）
+- **nanashi-484**：Adder、Normalizer / Rounder、Accumulator Register、頂層 MAC 整合
+
+兩人的 SystemVerilog 檔案分別存放於各格式的目錄中，最後合併：
+
+```
+FP8_E4M3/   ← Baseline FP8 E4M3 的 RTL 模組（.sv）
+AF8/        ← AF8 的 RTL 模組（.sv）
+```
+
 ## FP8 E4M3 格式 (Baseline)
 
 - 1-bit Sign, 4-bit Exponent, 3-bit Mantissa, Bias=7
