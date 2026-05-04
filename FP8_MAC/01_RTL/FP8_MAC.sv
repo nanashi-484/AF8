@@ -252,7 +252,7 @@ module fp8_multiplier(
     always_comb begin
         sign_prod = sign_a ^ sign_w;
         man_prod = man_a * man_w;
-        exp_prod = signed'({2'b00, exp_a}) + signed'({2'b00, exp_w}) - 6'sd7;
+        exp_prod = signed'({2'b00, exp_a}) + signed'({2'b00, exp_w}) - 6'sd14;
     end
 
 endmodule
