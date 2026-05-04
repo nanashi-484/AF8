@@ -48,44 +48,46 @@ module fp8_multiplier(
 
 endmodule
 
-module fp8_to_fp32_aligner (
-    //FP8 prod
-    input  logic signed [5:0]  exp_prod,
-    input  logic        [7:0]  man_prod,
+module fp8_to_fp32_aligner #(
+    parameter int MANT_WIDTH = 28 
+) (
+    // FP8 prod
+    input  logic signed [5:0]            exp_prod,
+    input  logic        [7:0]            man_prod,
 
-    //acc prod
-    input  logic        [9:0]  exp_acc,
-    input  logic        [23:0] man_acc,
+    // acc prod
+    input  logic        [9:0]            exp_acc,
+    input  logic        [MANT_WIDTH-1:0] man_acc,
 
-
-    output logic        [9:0]  exp_common,
-    output logic        [24:0] aligned_man_prod,
-    output logic        [24:0] aligned_man_acc
+    // 輸出到下一級
+    output logic        [9:0]            exp_common,
+    output logic        [MANT_WIDTH-1:0] aligned_man_prod,
+    output logic        [MANT_WIDTH-1:0] aligned_man_acc
 );
+
     logic [9:0] exp_prod_fp32;
     logic [9:0] exp_diff;
     logic [4:0] shift_amount;
     logic       prod_is_smaller;
 
-    logic [24:0] padded_man_prod;
-    logic [24:0] padded_man_acc;
+    logic [MANT_WIDTH-1:0] padded_man_prod;
+    logic [MANT_WIDTH-1:0] padded_man_acc;
 
     always_comb begin
-        //FP8 Bias to FP32 Bias
-        // ( - 7 + 127)
+        // FP8 Bias to FP32 Bias ( - 7 + 127 = +120)
+        //exp_prod_fp32 = 10'(exp_prod) + 10'd120;
         exp_prod_fp32 = 10'(exp_prod);
 
         prod_is_smaller = (exp_acc > exp_prod_fp32);
         exp_common = prod_is_smaller ? exp_acc : exp_prod_fp32;
-
         exp_diff = prod_is_smaller ? (exp_acc - exp_prod_fp32) : (exp_prod_fp32 - exp_acc);
 
         shift_amount = (exp_diff > 10'd31) ? 5'd31 : exp_diff[4:0];
 
-        padded_man_prod = {man_prod, 17'b0};
+        padded_man_prod = {man_prod, {(MANT_WIDTH - 8){1'b0}}};
         padded_man_acc  = man_acc;
 
-        //Shifter
+        // Barrel Shifter
         if (prod_is_smaller) begin
             aligned_man_prod = padded_man_prod >> shift_amount;
             aligned_man_acc  = padded_man_acc;
