@@ -73,7 +73,7 @@ module fp8_to_fp32_aligner (
     always_comb begin
         //FP8 Bias to FP32 Bias
         // ( - 7 + 127)
-        exp_prod_fp32 = 10'(exp_prod) + 10'd120;
+        exp_prod_fp32 = 10'(exp_prod);
 
         prod_is_smaller = (exp_acc > exp_prod_fp32);
         exp_common = prod_is_smaller ? exp_acc : exp_prod_fp32;
