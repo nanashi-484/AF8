@@ -62,24 +62,55 @@ graph TD
 *   **移位**：若 `exp_diff > 0`，需將 `mant_acc` 向右移 `exp_diff` 位，以匹配 `exp_prod`。反之亦然。
 *   **實作**：需要 **全功能Barrel Shifter** 來處理可能的任意位移量，這是晶片面積和功耗開銷的主要來源之一。
 
-#### 步驟4：加法器
+#### 步驟4：加法器（✅ 已實作）
 
-**功能**：對對齊後的尾數進行加法/減法運算。
+**檔案**：`FP8_MAC/01_RTL/FP8_MAC.sv` 模組 `fp8_adder`
+**詳細文件**：`docs/FP8_MAC/01_Adder.md`
 
-*   **操作選擇**：根據 `sign_prod` 和 `sign_acc` 判斷執行加法還是二進位補碼減法。
-*   **累加器格式**：內部累加器（Accumulator）推薦使用 **FP32 格式**的超寬位寬，以防止點積運算中的精度損失和溢位。
+**功能**：對對齊後的尾數進行有號加法/減法運算。
 
-#### 步驟5：正規化與捨入器
+*   **介面**：
+    *   Input: `sign_a`, `sign_b`, `mant_a[MANT_WIDTH-1:0]`, `mant_b[MANT_WIDTH-1:0]`, `exp_common[7:0]`
+    *   Output: `sign_out`, `mant_out[MANT_WIDTH:0]`（+1 bit 進位）, `exp_out[7:0]`
+*   **操作選擇**：
+    *   同號 (`sign_a == sign_b`)：`mant_out = mant_a + mant_b`，`sign_out = sign_a`
+    *   異號 (`sign_a != sign_b`)：比較大小後大減小，`sign_out` 跟隨較大者
+*   **指數**：`exp_out = exp_common`（pass through，指數調整交由 Normalizer）
+*   **設計關鍵**：大減小保證 mant_out 恆為正，Normalizer 僅需單向 LZD
+*   **累加器格式**：內部累加器（Accumulator）使用 **FP32 尾數精度**（24-bit + 4 guard bits，`MANT_WIDTH = 28`）
 
-**功能**：將加法結果格式化為最終的FP8輸出。
+#### 步驟5：正規化與捨入器（✅ 已實作）
 
-*   **前導零檢測(LZD)**：對結果進行**前導零檢測**。如果存在前導零，則需將尾數左移，並相應減小指數。
-*   **捨入**：採用 **捨入到最近偶數** 策略，以在多次運算中保持統計上的無偏性。
-*   **次正規數輸出**：如果指數值 `<= 0`，則進入次正規數輸出邏輯，進行額外的移位和判斷。
+**檔案**：`FP8_MAC/01_RTL/FP8_MAC.sv` 模組 `fp8_normalizer`
+**詳細文件**：`docs/FP8_MAC/02_Normalizer.md`
 
-#### 步驟6：累加器暫存器
+**功能**：將加法結果正規化並捨入為最終的 FP8 E4M3 輸出，同時輸出 FP32 精度值給累加器。
 
-*   儲存最新的求和結果（符號、指數、尾數）。累加器的復位值應為 0。
+*   **介面**：
+    *   Input: `sign_in`, `mant_in[MANT_WIDTH:0]`, `exp_in[7:0]`
+    *   Output: `fp8_out[7:0]`（FP8 E4M3）, `acc_sign`, `acc_exp[7:0]`, `acc_mant[MANT_WIDTH-1:0]`
+*   **三級組合邏輯**：
+    1.  **Carry Adjustment**：處理加法溢位（右移 1 bit，指數 +1）
+    2.  **LZD + 左移正規化**：前導零檢測後左移，若指數預算不足則部分正規化（`exp_norm = 0`）
+    3.  **RNE 捨入 + FP8 封裝**：三條路徑 — Zero / Normal / Subnormal
+*   **Normal 路徑**（`exp_norm >= 1`）：從 mantissa 擷取 `G, R, S` 做 RNE 捨入至 3-bit mantissa，溢位則輸出 NaN
+*   **Subnormal 路徑**（`exp_norm == 0`）：`M_sub = mant_norm >> (MANT_WIDTH - 3)`，再做 RNE 捨入；若 `M_sub >= 8` 則升為最小 Normal
+*   **RNE 公式**：`round = G & (R | S | LSB)`
+*   **NaN 編碼**：`{sign, 4'b1111, 3'b100}`
+
+#### 步驟6：累加器暫存器（✅ 已實作）
+
+**檔案**：`FP8_MAC/01_RTL/FP8_MAC.sv` 模組 `fp8_acc_register`
+**詳細文件**：`docs/FP8_MAC/03_Accumulator_Register.md`
+
+**功能**：儲存 Normalizer 輸出的正規化結果，回饋給 Aligner 供下一個 MAC 週期使用。
+
+*   **介面**：
+    *   Input: `clk`, `rst_n`（async, active-low）, `acc_sign_in`, `acc_exp_in[7:0]`, `acc_mant_in[MANT_WIDTH-1:0]`
+    *   Output: `acc_sign_out`, `acc_exp_out[7:0]`, `acc_mant_out[MANT_WIDTH-1:0]`
+*   **重置**：`rst_n = 0` 時清除為零（初值 = 0，確保首次 MAC 累加項為 0）
+*   **時序**：每個 `posedge clk` latch Normalizer 輸出，為 MAC 管線的唯一 pipeline register
+*   **內部格式**：sign (1) + exp (8, bias=7) + mant (MANT_WIDTH, 含 hidden bit)
 
 ### 4. 關鍵技術細節與邊界條件（Checklist）
 
