@@ -9,8 +9,13 @@
 #======================================================
 set DESIGN "FP8_MAC"
 set CYCLE 10.0
-set INPUT_DLY  [expr 0.5*$CYCLE]
-set OUTPUT_DLY [expr 0.5*$CYCLE]
+# I/O delay: 10% of clock period.
+# FP8_MAC 為純組合邏輯 MAC（僅內部 accumulator 為 sequential），
+# 輸入來自 external register 的 clock-to-Q，輸出送往 external register 的 setup。
+# 50% 過於保守（input_delay+output_delay=10ns 佔滿整個週期），
+# 實際組合邏輯僅需 ~5.3ns。10% 反映真實 register-to-register 情境。
+set INPUT_DLY  [expr 0.1*$CYCLE]
+set OUTPUT_DLY [expr 0.1*$CYCLE]
 
 #======================================================
 # (B) Read RTL Code

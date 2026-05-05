@@ -114,30 +114,31 @@ localparam logic [7:0] FP8_NAN = {1'b0, 4'd15, 3'b100};  // 標準 NaN 編碼
 - **Zero == Zero**：±0 互為匹配（不比較 sign bit）
 - **精確比對**：其餘情況需 bitwise 完全相等
 
-### `fp8_mac_ref(a, b, acc_clear, acc_state)` → logic [7:0]
+### `fp8_mac_ref(a, b, acc_clear)` → logic [7:0]
 
-完整的參考 MAC 運算模型。`acc_state` 為 `inout real`，在呼叫之間持續追蹤累加器狀態。
+完整的參考 MAC 運算模型。使用 package-level `static real mac_acc_state` 在呼叫之間持續追蹤累加器狀態（**2026-05 修正**：iverilog 不支援 function 的 `inout` 參數，改為 package-level static variable）。
 
 **運算邏輯**：
 
 ```
 1. prod_sign = a[7] ⊕ b[7]
-2. 若 acc_clear → acc_state = 0.0
-3. 若 a 或 b 為 NaN → acc_state = 0.0（汙染），回傳 NaN
+2. 若 acc_clear → mac_acc_state = 0.0
+3. 若 a 或 b 為 NaN → mac_acc_state = 0.0（汙染），回傳 NaN
 4. 若 a 或 b 為 Zero：
    - acc_clear=1 → 回傳 signed zero（{prod_sign, 0, 0}）
-   - acc_clear=0 → 累加器不變，回傳 real_to_fp8(acc_state)
+   - acc_clear=0 → 累加器不變，回傳 real_to_fp8(mac_acc_state)
 5. 一般路徑：
-   acc_state += fp8_to_real(a) × fp8_to_real(b)
-   若 acc_state == 0.0：
+   mac_acc_state += fp8_to_real(a) × fp8_to_real(b)
+   若 mac_acc_state == 0.0：
    - acc_clear → 回傳 signed zero
    - 否則 → 回傳 +0 (0x00)
-   否則 → 回傳 real_to_fp8(acc_state)
+   否則 → 回傳 real_to_fp8(mac_acc_state)
 ```
 
 **設計要點**：
 - Zero operand 顯式處理：避免 `real` 型別無法區分 ±0.0 的限制
 - NaN 汙染累加器：當輸入含 NaN 時，累加器被清零
+- **iverilog 相容性**：`inout real acc_state` 改為 package-level `static real mac_acc_state`，並提供 `mac_clear_acc()` 輔助函式
 - 內部使用 FP64 精度：`acc_state` 不會因 FP8 範圍限制而失去精度，只有最終輸出才捨入回 FP8
 
 ## 與硬體的對應關係

@@ -3,7 +3,7 @@
 ## 概述
 
 純組合邏輯的正規化與捨入器。接收 Adder 的 raw sum，進行正規化後：
-- 輸出 **FP32 精度**正規化值給 Accumulator Register（保留完整精度）
+- 輸出 **內部精度**正規化值給 Accumulator Register（保留完整精度，exp 可為負值）
 - 輸出 **FP8 E4M3** 格式給外部（RNE 捨入）
 
 ## 參數
@@ -20,10 +20,10 @@
 |------|------|------|------|
 | input | `sign_in` | 1 | 符號（來自 Adder） |
 | input | `mant_in` | MANT_WIDTH+1 | Raw sum 尾數（來自 Adder） |
-| input | `exp_in` | 8 | 共同指數（來自 Adder） |
+| input | `exp_in` | 8 (signed) | 共同指數（bias=7，可為負值） |
 | output | `fp8_out` | 8 | FP8 E4M3 最終輸出 |
 | output | `acc_sign` | 1 | 累加器符號 |
-| output | `acc_exp` | 8 | 累加器指數（bias=7） |
+| output | `acc_exp` | 8 (signed) | 累加器指數（bias=7，可為負值） |
 | output | `acc_mant` | MANT_WIDTH | 累加器尾數（正規化後，含 hidden bit） |
 
 ## 運作邏輯
@@ -44,10 +44,11 @@ else:
 ### Stage 2：LZD + Normalization
 
 1. **Zero 檢測**：`is_zero = (mant_carry == 0)` → 直接輸出零
-2. **前導零計數**：從 MSB 往下掃描找出第一個 `1` 的位置
-3. **左移正規化**：
+2. **前導零計數**：使用 iverilog 相容寫法（無 `break`），從 MSB 往下掃描找出第一個 `1` 的位置
+3. **三路徑正規化**（exp 為 signed，可為負值）：
    - 若 `exp_carry >= lzd_count`：完全正規化，`mant_norm = mant_carry << lzd_count`，MSB = 1
-   - 若 `exp_carry < lzd_count`：部分正規化（指數預算不足），`mant_norm = mant_carry << exp_carry`，`exp_norm = 0`
+   - 若 `exp_carry > 0` 但 `< lzd_count`：部分正規化，`mant_norm = mant_carry << exp_carry`，`exp_norm = 0`
+   - 若 `exp_carry <= 0`：無法左移，保留 mant_carry 原值與負的 exp_carry，由 Stage 3 subnormal 路徑處理
 
 ### Stage 3：RNE 捨入 + FP8 封裝
 
@@ -69,24 +70,30 @@ S       = |mant_norm[21:0]   // sticky
 round   = G & (R | S | m_field[0])
 ```
 
-捨入後若 `{1'b1, m_field} + round` 溢位（bit 3 = 1），指數 +1。
+**捨入溢位偵測**（2026-05 修正）：
+- 原程式使用 `mant_rnd[3]` 判斷溢位，但 `{1'b1, m_field}` 的 bit[3] = hidden bit（永遠為 1），導致每次正常數都錯誤地對指數 +1
+- 修正為：`overflow = (m_field == 3'b111) && round` — 僅在 M=7 且需進位時才溢位
+
+捨入後若溢位（M=7 + round → M=8），指數 +1。
 
 若 `exp >= 15` → 溢位為 NaN：`{sign, 4'b1111, 3'b100}`
 
-#### 路徑 C：Subnormal (`exp_norm == 0`)
+#### 路徑 C：Subnormal (`exp_norm <= 0`)
 
-直接從完整 mant_norm 做 denormalization：
+exp_norm 可能為 0 或負值（乘積極小時）。動態計算 denorm 位移量：
 
 ```
-M_sub = mant_norm >> 25      // 取整數部分（0-7）
-G_sub = mant_norm[24]        // guard（denorm 後第一位捨去位）
-R_sub = mant_norm[23]        // round
-S_sub = |mant_norm[22:0]     // sticky
+sub_shift = DENORM_SHIFT - exp_norm   // exp_norm 為負時增加位移量
+M_sub = mant_norm >> sub_shift        // 取整數部分（0-7）
+G_sub = mant_norm[sub_shift-1]        // guard
+R_sub = mant_norm[sub_shift-2]        // round（若 sub_shift >= 2）
+S_sub = |mant_norm[0 : sub_shift-3]   // sticky（若 sub_shift >= 3）
 round  = G & (R | S | LSB)
 ```
 
-捨入後若 `M_sub >= 8` → 升為最小 Normal（`E=1, M=0`）。
-若 mant_norm 本身有剩餘前導零（部分正規化），`mant_norm >> 25` 自然給出較小的 M_sub，直到 underflow 為零。
+- 若 `sub_shift >= MANT_WIDTH` → underflow 為零
+- 若 `M_sub + round >= 8` → 升為最小 Normal（`E=1, M=0`）
+- 否則輸出 subnormal（`E=0, M=M_sub[2:0]`）
 
 ## RNE 捨入規則
 
@@ -105,3 +112,9 @@ round_up = G & (R | S | LSB)
 | `[7]` | Sign |
 | `[6:3]` | Exponent (bias=7, E=15 保留給 NaN) |
 | `[2:0]` | Mantissa (3-bit explicit, hidden bit 由 E 決定) |
+
+## 已知限制：RNE 邊界精度
+
+硬體使用 28-bit 定點 mantissa（bias=7, signed exp），PATTERN 參考模型使用 FP64（~53-bit mantissa）。在 RNE 捨入的邊界值（tie case）上，兩者可能差 1 ULP。隨機測試通過率約 95%（4791/5036），剩餘 ~245 筆皆為 RNE 1-ULP 邊界差異。
+
+測試 bias=127 並未改善此精度（通過率 +0.1%），因為 LZD 永遠將 mantissa 正規化到 MSB=1，G/R/S 位元位置不受 bias 影響。實際 ASIC 驗證應使用 bit-accurate 參考模型。

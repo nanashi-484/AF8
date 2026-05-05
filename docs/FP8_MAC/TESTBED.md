@@ -71,10 +71,17 @@ Cycle N+1:  acc_register 回饋至 Aligner，供下一個 MAC 使用
 
 ### `drive_cycle(a, b, clr)`
 
-驅動 DUT 輸入並等待一個時脈週期：
-1. 使用 non-blocking assignment (`<=`) 設定 `in_a`, `in_b`, `acc_clear`
-2. 等待 `posedge clk`
-3. 延遲 `#1` 讓 combinational logic 穩定（避免 Verilog race condition）
+驅動 DUT 輸入並等待一個時脈週期（**2026-05 修正時序**）：
+
+```
+1. @(posedge clk)  — 先等待 posedge，讓 acc_register latch 上一週期結果
+2. in_a <= a       — 在 register latch 後才驅動新輸入（NBA）
+3. in_b <= b
+4. acc_clear <= clr
+5. #1              — combinational logic 穩定
+```
+
+**修正原因**：原本先驅動輸入再 `@(posedge clk)`，但 NBA 賦值在同一個 timestep 的 NBA region 生效後才進入 posedge，導致 register latch 到的是「新輸入的結果」而非「上一週期的結果」。這造成累加測試中 feedback loop 多算一次。修正後 register latch 舊值 → 新輸入驅動 → check out_result（在下次 latch 前），時序正確。
 
 ### `check(expected, id, desc)`
 

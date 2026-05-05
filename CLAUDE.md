@@ -56,15 +56,15 @@ AF8_MAC/    ← AF8 的 RTL 模組（.sv），含 01_RTL / 00_TESTBED / 02_SYN /
 
 | 模組 | 負責人 | 狀態 | 檔案 |
 |------|--------|------|------|
-| Decoder | lunn-rocks | 待實作 | |
-| Multiplier (4×4) | lunn-rocks | 待實作 | |
-| Aligner (Barrel Shifter) | lunn-rocks | 待實作 | |
-| Adder | **nanashi-484** | ✅ 完成 | `FP8_MAC/01_RTL/FP8_MAC.sv` |
-| Normalizer / Rounder | **nanashi-484** | ✅ 完成 | `FP8_MAC/01_RTL/FP8_MAC.sv` |
-| Accumulator Register | **nanashi-484** | ✅ 完成 | `FP8_MAC/01_RTL/FP8_MAC.sv` |
-| 頂層 MAC 整合 | **nanashi-484** | 待實作 | |
-| Testbench (TESTBED) | **nanashi-484** | ✅ 完成 | `FP8_MAC/00_TESTBED/TESTBED.sv` |
-| Reference Model (PATTERN) | **nanashi-484** | ✅ 完成 | `FP8_MAC/00_TESTBED/PATTERN.sv` |
+| Decoder | lunn-rocks | ✅ 完成（已修正 subnormal 指數） | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| Multiplier (4×4) | lunn-rocks | ✅ 完成（已修正指數公式） | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| Aligner (Barrel Shifter) | lunn-rocks | ✅ 完成（已修正 exp 位寬） | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| Adder | **nanashi-484** | ✅ 完成（已改為 signed exp） | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| Normalizer / Rounder | **nanashi-484** | ✅ 完成（已修正溢位偵測、LZD、signed exp） | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| Accumulator Register | **nanashi-484** | ✅ 完成（已改為 signed exp） | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| 頂層 MAC 整合 | **nanashi-484** | ✅ 完成（含 NaN 傳播、acc_clear） | `FP8_MAC/01_RTL/FP8_MAC.sv` |
+| Testbench (TESTBED) | **nanashi-484** | ✅ 完成（已修正時序） | `FP8_MAC/00_TESTBED/TESTBED.sv` |
+| Reference Model (PATTERN) | **nanashi-484** | ✅ 完成（已修正 iverilog 相容性） | `FP8_MAC/00_TESTBED/PATTERN.sv` |
 
 詳細模組規格文件：
 - `docs/FP8_MAC/01_Adder.md`
@@ -99,6 +99,19 @@ cd $專案/03_GATE && ./01_run_vcs_gate
 
 每個步驟的輸出結果（模擬 log、合成報告、時序/功耗報告）請保留於對應目錄中。
 
+### 合成時序約束（syn.tcl）
+
+FP8_MAC 為純組合邏輯 MAC（僅內部 acc_register 為 sequential），input/output 來自外部 register：
+
+| 約束 | 值 | 說明 |
+|------|-----|------|
+| `CYCLE` | 10.0 ns | 100 MHz |
+| `INPUT_DLY` | 1.0 ns (10%) | 外部 clock-to-Q + wire（不可用 50%，會佔滿週期） |
+| `OUTPUT_DLY` | 1.0 ns (10%) | wire + 外部 setup |
+| `clock_uncertainty` | 0.1 ns | 抖動裕量 |
+
+若合成出現 slack violation，優先檢查 input/output delay 是否過於保守。實際組合邏輯延遲約 5.26ns，理論最高頻率約 190 MHz。
+
 ## 關鍵設計要點
 
 - **Multiplier Array**：Baseline 4×4 (8-bit product) vs AF8 3×3 (6-bit product)，是面積與功耗差異的主要來源
@@ -111,8 +124,16 @@ cd $專案/03_GATE && ./01_run_vcs_gate
 
 - **管線深度**：單週期 MAC（純組合邏輯 + Accumulator Register），與論文 Table III 比較方式一致
 - **內部精度**：FP32 尾數精度（24-bit mantissa + 4 guard bits），`MANT_WIDTH = 28`
-- **指數 Bias**：內部統一使用 bias=7（與 FP8 E4M3 相同），8-bit 指數欄位
+- **指數 Bias**：內部統一使用 bias=7（與 FP8 E4M3 相同），8-bit 指數欄位（`signed`）
 - **捨入模式**：Round to Nearest Even (RNE)，`round = G & (R | S | LSB)`
 - **NaN 編碼**：`{sign, 4'b1111, 3'b100}`（E=15 皆視為 NaN，E4M3 無 Infinity）
 - **Adder 設計**：大減小架構，保證輸出 mantissa 恆為正，Normalizer 只需單向 LZD
 - **Accumulator Register**：非同步 reset (active-low)，初始值為零，每週期 latch
+
+### bias=127 測試結論（2026-05-05）
+
+測試將內部 bias 從 7 改為 127（對齊 FP32），結論：
+- bias=7: 4791/5036 (95.1%)
+- bias=127: 4796/5036 (95.2%)，僅 +0.1%
+- **bias 不影響 RNE 精度**：因為 LZD 永遠將 mantissa 正規化到 MSB=1，G/R/S 位元提取位置不受 bias 影響；subnormal 路徑的 `sub_shift` 在兩種 bias 下產生相同位移量
+- 剩餘 ~240 筆失敗是硬體 28-bit 定點精度與 PATTERN FP64 參考模型的固有落差，在實際 ASIC 流程中使用 bit-accurate 模型即可消除

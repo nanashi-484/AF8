@@ -18,10 +18,10 @@
 | input | `sign_b` | 1 | 運算元 B 符號（累加器） |
 | input | `mant_a` | MANT_WIDTH | 對齊後尾數 A |
 | input | `mant_b` | MANT_WIDTH | 對齊後尾數 B |
-| input | `exp_common` | 8 | 對齊後共同指數 |
+| input | `exp_common` | 8 (signed) | 對齊後共同指數（bias=7） |
 | output | `sign_out` | 1 | 結果符號 |
 | output | `mant_out` | MANT_WIDTH+1 | 結果尾數（含進位） |
-| output | `exp_out` | 8 | 結果指數（pass through） |
+| output | `exp_out` | 8 (signed) | 結果指數（pass through） |
 
 ## 運作邏輯
 

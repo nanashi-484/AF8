@@ -17,10 +17,10 @@
 | input | `clk` | 1 | 時脈 |
 | input | `rst_n` | 1 | 非同步重置（active-low） |
 | input | `acc_sign_in` | 1 | 正規化後符號（來自 Normalizer） |
-| input | `acc_exp_in` | 8 | 正規化後指數（bias=7） |
+| input | `acc_exp_in` | 8 (signed) | 正規化後指數（bias=7，可為負值） |
 | input | `acc_mant_in` | MANT_WIDTH | 正規化後尾數（含 hidden bit） |
 | output | `acc_sign_out` | 1 | 儲存的符號（回饋給 Aligner） |
-| output | `acc_exp_out` | 8 | 儲存的指數 |
+| output | `acc_exp_out` | 8 (signed) | 儲存的指數（bias=7，可為負值） |
 | output | `acc_mant_out` | MANT_WIDTH | 儲存的尾數 |
 
 ## 運作邏輯

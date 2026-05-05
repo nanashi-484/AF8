@@ -1,0 +1,103 @@
+ 
+****************************************
+check_design summary:
+Version:     R-2020.09
+Date:        Tue May  5 03:14:42 2026
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     15
+    Feedthrough (LINT-29)                                          14
+    Shorted outputs (LINT-31)                                       1
+
+Cells                                                              34
+    Cells do not drive (LINT-1)                                    34
+
+Nets                                                               33
+    Unloaded nets (LINT-2)                                         33
+--------------------------------------------------------------------------------
+
+Warning: In design 'fp8_to_fp32_aligner_MANT_WIDTH28', cell 'B_3' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_to_fp32_aligner_MANT_WIDTH28', cell 'B_4' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_to_fp32_aligner_MANT_WIDTH28', cell 'B_5' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_to_fp32_aligner_MANT_WIDTH28', cell 'B_6' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_adder_MANT_WIDTH28', cell 'B_4' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_adder_MANT_WIDTH28', cell 'B_5' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_347' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_348' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_349' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_350' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_351' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_352' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_353' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_354' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_355' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_356' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_357' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_358' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_359' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_360' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_361' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_362' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_363' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_364' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_365' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_366' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_367' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_368' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_369' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_370' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_371' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_372' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_373' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', cell 'B_374' does not drive any nets. (LINT-1)
+Warning: In design 'FP8_MAC', net 'is_zero_b' driven by pin 'u_decoder_b/is_zero' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'is_zero_a' driven by pin 'u_decoder_a/is_zero' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1617' driven by pin 'u_normalizer/srl_277/Z_4' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1616' driven by pin 'u_normalizer/srl_277/Z_5' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1615' driven by pin 'u_normalizer/srl_277/Z_6' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1614' driven by pin 'u_normalizer/srl_277/Z_7' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1613' driven by pin 'u_normalizer/srl_277/Z_8' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1612' driven by pin 'u_normalizer/srl_277/Z_9' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1611' driven by pin 'u_normalizer/srl_277/Z_10' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1610' driven by pin 'u_normalizer/srl_277/Z_11' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1609' driven by pin 'u_normalizer/srl_277/Z_12' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1608' driven by pin 'u_normalizer/srl_277/Z_13' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1607' driven by pin 'u_normalizer/srl_277/Z_14' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1606' driven by pin 'u_normalizer/srl_277/Z_15' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1605' driven by pin 'u_normalizer/srl_277/Z_16' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1604' driven by pin 'u_normalizer/srl_277/Z_17' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1603' driven by pin 'u_normalizer/srl_277/Z_18' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1602' driven by pin 'u_normalizer/srl_277/Z_19' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1601' driven by pin 'u_normalizer/srl_277/Z_20' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1600' driven by pin 'u_normalizer/srl_277/Z_21' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1599' driven by pin 'u_normalizer/srl_277/Z_22' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1598' driven by pin 'u_normalizer/srl_277/Z_23' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1597' driven by pin 'u_normalizer/srl_277/Z_24' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1596' driven by pin 'u_normalizer/srl_277/Z_25' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1595' driven by pin 'u_normalizer/srl_277/Z_26' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1594' driven by pin 'u_normalizer/srl_277/Z_27' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1593' driven by pin 'u_normalizer/C5511/Z' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1592' driven by pin 'u_normalizer/C4748/Z' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1591' driven by pin 'u_normalizer/C5776/Z' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1590' driven by pin 'u_normalizer/C4739/Z' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1589' driven by pin 'u_normalizer/C4738/Z' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1588' driven by pin 'u_normalizer/C4705/Z' has no loads. (LINT-2)
+Warning: In design 'FP8_MAC', net 'u_normalizer/net1587' driven by pin 'u_normalizer/C4701/Z' has no loads. (LINT-2)
+Warning: In design 'fp8_decoder', input port 'in_data[7]' is connected directly to output port 'sign'. (LINT-29)
+Warning: In design 'fp8_decoder', input port 'in_data[2]' is connected directly to output port 'man_with_hidden[2]'. (LINT-29)
+Warning: In design 'fp8_decoder', input port 'in_data[1]' is connected directly to output port 'man_with_hidden[1]'. (LINT-29)
+Warning: In design 'fp8_decoder', input port 'in_data[0]' is connected directly to output port 'man_with_hidden[0]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[7]' is connected directly to output port 'exp_out[7]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[6]' is connected directly to output port 'exp_out[6]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[5]' is connected directly to output port 'exp_out[5]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[4]' is connected directly to output port 'exp_out[4]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[3]' is connected directly to output port 'exp_out[3]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[2]' is connected directly to output port 'exp_out[2]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[1]' is connected directly to output port 'exp_out[1]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[0]' is connected directly to output port 'exp_out[0]'. (LINT-29)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', input port 'sign_in' is connected directly to output port 'acc_sign'. (LINT-29)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', input port 'sign_in' is connected directly to output port 'fp8_out[7]'. (LINT-29)
+Warning: In design 'fp8_normalizer_MANT_WIDTH28', output port 'fp8_out[7]' is connected directly to output port 'acc_sign'. (LINT-31)
+1
