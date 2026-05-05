@@ -66,6 +66,22 @@ AF8_MAC/    ← AF8 的 RTL 模組（.sv），含 01_RTL / 00_TESTBED / 02_SYN /
 | Testbench (TESTBED) | **nanashi-484** | ✅ 完成（已修正時序） | `FP8_MAC/00_TESTBED/TESTBED.sv` |
 | Reference Model (PATTERN) | **nanashi-484** | ✅ 完成（已修正 iverilog 相容性） | `FP8_MAC/00_TESTBED/PATTERN.sv` |
 
+#### AF8 MAC 進度
+
+| 模組 | 負責人 | 狀態 | 檔案 |
+|------|--------|------|------|
+| Decoder (Sign-Magnitude) | lunn-rocks | ✅ 完成 | `AF8_MAC/01_RTL/AF8_MAC.sv` |
+| Multiplier (3×3, Base-4) | lunn-rocks | ✅ 完成 | 同上 |
+| Aligner (MUX Tree) | lunn-rocks | ✅ 完成 | 同上 |
+| Adder (27→28-bit) | **nanashi-484** | ✅ 完成（2026-05-05） | 同上 |
+| Normalizer / Rounder | **nanashi-484** | ✅ 完成（2026-05-05，24-bit acc, one-step subnormal） | 同上 |
+| Accumulator Register | **nanashi-484** | ✅ 完成（2026-05-05，24-bit + 10-bit exp） | 同上 |
+| 頂層 AF8_MAC 整合 | **nanashi-484** | ✅ 完成（2026-05-05，含 NaN 傳播、acc_clear） | 同上 |
+| Testbench (TESTBED) | **nanashi-484** | ✅ 完成（2026-05-05） | `AF8_MAC/00_TESTBED/TESTBED.sv` |
+| Reference Model (PATTERN) | **nanashi-484** | ✅ 完成（2026-05-05） | `AF8_MAC/00_TESTBED/PATTERN.sv` |
+
+**AF8 本地 iverilog 驗證**：5032 測試，4723 通過（93.9%），309 失敗為 24-bit 精度邊界誤差。
+
 詳細模組規格文件：
 - `docs/FP8_MAC/01_Adder.md`
 - `docs/FP8_MAC/02_Normalizer.md`
