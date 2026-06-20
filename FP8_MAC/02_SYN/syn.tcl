@@ -7,8 +7,9 @@
 #======================================================
 # (A) Global Parameters
 #======================================================
-set DESIGN "FP8_MAC"
-set CYCLE 10.0
+set FILE_NAME "FP8_MAC"             ;# 你的 .sv 檔名
+set DESIGN "FP8_MAC_DATAPATH"       ;# <--- 重要！把合成目標指向「純數學核心」
+set CYCLE 2.5
 # I/O delay: 10% of clock period.
 # FP8_MAC 為純組合邏輯 MAC（僅內部 accumulator 為 sequential），
 # 輸入來自 external register 的 clock-to-Q，輸出送往 external register 的 setup。
@@ -22,7 +23,7 @@ set OUTPUT_DLY [expr 0.1*$CYCLE]
 #======================================================
 # (B-1) analyze + elaborate
 set hdlin_auto_save_templates TRUE
-analyze -f sverilog "../01_RTL/${DESIGN}.sv"
+analyze -f sverilog "../01_RTL/${FILE_NAME}.sv"
 elaborate $DESIGN
 
 # (B-2) read_sverilog

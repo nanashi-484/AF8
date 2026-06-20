@@ -1,0 +1,37 @@
+{
+    "...MASTER...": [
+        "SIM",
+        "amcQw",
+        "module"
+    ],
+    "std": [
+        "std",
+        "reYIK",
+        "module"
+    ],
+    "AF8_MAC_DATAPATH": [
+        "AF8_MAC_DATAPATH",
+        "GmnMR",
+        "module"
+    ],
+    "af8_to_fp32_aligner": [
+        "af8_to_fp32_aligner",
+        "IIGaH",
+        "module"
+    ],
+    "TESTBED": [
+        "TESTBED",
+        "TAUdR",
+        "module"
+    ],
+    "af8_adder": [
+        "af8_adder",
+        "zWJxN",
+        "module"
+    ],
+    "af8_pattern_pkg": [
+        "af8_pattern_pkg",
+        "JHBNk",
+        "module"
+    ]
+}

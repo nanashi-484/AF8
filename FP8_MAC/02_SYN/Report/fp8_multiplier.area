@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : fp8_multiplier
+Version: R-2020.09
+Date   : Sat May 23 16:19:17 2026
+****************************************
+
+Library(s) Used:
+
+    sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c (File: /CAD/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db)
+
+Number of ports:                           33
+Number of nets:                            97
+Number of cells:                           70
+Number of combinational cells:             70
+Number of sequential cells:                 0
+Number of macros/black boxes:               0
+Number of buf/inv:                         22
+Number of references:                      23
+
+Combinational area:                 87.317999
+Buf/Inv area:                        9.979200
+Noncombinational area:               0.000000
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                    87.317999
+Total area:                         87.317999
+1

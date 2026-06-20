@@ -462,3 +462,67 @@ module AF8_MAC (
     assign out_result = is_nan_input ? 8'h7C : af8_result;
 
 endmodule
+
+
+module AF8_MAC_DATAPATH (
+    input  logic        clk,
+    input  logic        rst_n,
+    input  logic        acc_clear,
+
+    // 從 Decoder 來的純訊號
+    input  logic        sign_a,
+    input  logic [3:0]  exp_a,
+    input  logic [2:0]  man_a,
+    input  logic        sign_b,
+    input  logic [3:0]  exp_b,
+    input  logic [2:0]  man_b,
+
+    // 從 Normalizer 來的正規化反饋 (維持浮點數累加的正確性)
+    input  logic        norm_sign,
+    input  logic signed [9:0] norm_exp,
+    input  logic [23:0] norm_mant,
+    input  logic        is_nan_input, // NaN強制歸零用
+
+    // 給 Normalizer 的加法結果
+    output logic        adder_sign,
+    output logic [27:0] adder_mant,
+    output logic signed [9:0] adder_exp
+);
+    logic               sign_prod;
+    logic signed [5:0]  exp_prod_base4;
+    logic [5:0]         man_prod;
+    logic               acc_sign, acc_sign_mux;
+    logic signed [9:0]  acc_exp, acc_exp_mux;
+    logic [23:0]        acc_mant, acc_mant_mux;
+    logic signed [9:0]  exp_common;
+    logic [26:0]        aligned_man_prod, aligned_man_acc;
+
+    af8_multiplier u_multiplier (
+        .sign_a(sign_a), .exp_a(exp_a), .man_a(man_a),
+        .sign_w(sign_b), .exp_w(exp_b), .man_w(man_b),
+        .sign_prod(sign_prod), .exp_prod_base4(exp_prod_base4), .man_prod(man_prod)
+    );
+
+    assign acc_sign_mux = acc_clear ? 1'b0 : acc_sign;
+    assign acc_exp_mux  = acc_clear ? 10'sd0 : acc_exp;
+    assign acc_mant_mux = acc_clear ? '0    : acc_mant;
+
+    af8_to_fp32_aligner u_aligner (
+        .exp_prod_base4(exp_prod_base4), .man_prod(man_prod),
+        .exp_acc(acc_exp_mux), .man_acc(acc_mant_mux),
+        .exp_common(exp_common), .aligned_man_prod(aligned_man_prod), .aligned_man_acc(aligned_man_acc)
+    );
+
+    af8_adder u_adder (
+        .sign_a(sign_prod), .sign_b(acc_sign_mux), .mant_a(aligned_man_prod), .mant_b(aligned_man_acc),
+        .exp_common(exp_common), .sign_out(adder_sign), .mant_out(adder_mant), .exp_out(adder_exp)
+    );
+
+    af8_acc_register u_acc_register (
+        .clk(clk), .rst_n(rst_n),
+        .acc_sign_in(is_nan_input ? 1'b0 : norm_sign),
+        .acc_exp_in(is_nan_input ? 10'sd0 : norm_exp),
+        .acc_mant_in(is_nan_input ? '0 : norm_mant),
+        .acc_sign_out(acc_sign), .acc_exp_out(acc_exp), .acc_mant_out(acc_mant)
+    );
+endmodule

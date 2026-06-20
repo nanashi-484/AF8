@@ -1,0 +1,144 @@
+{
+    "CompileProcesses": [
+        "cgproc.127347.json",
+        "cgproc.127362.json"
+    ],
+    "MlibObjs": {},
+    "NameTable": {
+        "std": [
+            "std",
+            "reYIK",
+            "module"
+        ],
+        "fp8_pattern_pkg": [
+            "fp8_pattern_pkg",
+            "pueqJ",
+            "module"
+        ],
+        "...MASTER...": [
+            "SIM",
+            "amcQw",
+            "module"
+        ],
+        "TESTBED": [
+            "TESTBED",
+            "TAUdR",
+            "module"
+        ]
+    },
+    "stat": {
+        "totalObjSize": 89601,
+        "Frontend(%)": 82.517788794170485,
+        "outputSizePerQuad": 127.0,
+        "ru_self_cgstart": {
+            "ru_utime_sec": 0.13000100000000001,
+            "ru_stime_sec": 0.058105999999999998,
+            "ru_nvcsw": 312,
+            "ru_maxrss_kb": 61800,
+            "ru_minflt": 15128,
+            "ru_majflt": 0,
+            "ru_nivcsw": 51
+        },
+        "ru_childs_cgstart": {
+            "ru_utime_sec": 0.010067,
+            "ru_stime_sec": 0.037363,
+            "ru_nvcsw": 13,
+            "ru_maxrss_kb": 17316,
+            "ru_minflt": 2249,
+            "ru_majflt": 0,
+            "ru_nivcsw": 11
+        },
+        "nMops": 2167,
+        "nQuads": 705,
+        "ru_self_end": {
+            "ru_utime_sec": 0.15754299999999999,
+            "ru_stime_sec": 0.073909000000000002,
+            "ru_nvcsw": 444,
+            "ru_maxrss_kb": 66064,
+            "ru_minflt": 17618,
+            "ru_majflt": 0,
+            "ru_nivcsw": 64
+        },
+        "mop/quad": 3.0737588652482271,
+        "ru_childs_end": {
+            "ru_utime_sec": 0.089626999999999998,
+            "ru_stime_sec": 0.063728999999999994,
+            "ru_nvcsw": 75,
+            "ru_maxrss_kb": 32576,
+            "ru_minflt": 7187,
+            "ru_majflt": 0,
+            "ru_nivcsw": 15
+        },
+        "mopSpeed": 78679.83443468163,
+        "CodeGen(%)": 17.482211205829511,
+        "quadSpeed": 25597.269624573393,
+        "peak_mem_kb": 225128
+    },
+    "CurCompileModules": [
+        "...MASTER...",
+        "fp8_pattern_pkg",
+        "std"
+    ],
+    "PrevCompiledModules": {
+        "fp8_pattern_pkg": {
+            "pueqJ_d": {
+                "mode": 4,
+                "bytes": 28262,
+                "out": "pueqJ_d.o",
+                "archive": "archive.4/_prev_archive_1.a",
+                "mod": "fp8_pattern_pkg",
+                "checksum": 0
+            }
+        },
+        "std": {
+            "reYIK_d": {
+                "mode": 4,
+                "bytes": 42043,
+                "out": "reYIK_d.o",
+                "archive": "archive.4/_prev_archive_1.a",
+                "mod": "std",
+                "checksum": 0
+            }
+        },
+        "...MASTER...": {
+            "amcQw_d": {
+                "mode": 4,
+                "bytes": 7804,
+                "out": "objs/amcQw_d.o",
+                "mod": "...MASTER...",
+                "checksum": 0
+            }
+        },
+        "TESTBED": {
+            "TAUdR_d": {
+                "mode": 4,
+                "bytes": 178652,
+                "archive": "archive.4/_127362_archive_1.a",
+                "out": "TAUdR_d.o",
+                "mod": "TESTBED",
+                "checksum": 0
+            }
+        }
+    },
+    "CompileStrategy": "fullobj",
+    "CompileStatus": "Successful",
+    "CurCompileUdps": {},
+    "SIMBData": {
+        "archive": "archive.4/_127347_archive_1.a",
+        "out": "amcQwB.o",
+        "bytes": 89601
+    },
+    "LVLData": [
+        "SIM"
+    ],
+    "PEModules": [],
+    "Misc": {
+        "cwd": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/01_RTL",
+        "daidir": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/01_RTL/simv.daidir",
+        "csrc": "csrc",
+        "archive_dir": "archive.4",
+        "csrc_abs": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/01_RTL/csrc",
+        "daidir_abs": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/01_RTL/simv.daidir",
+        "default_output_dir": "csrc"
+    }
+}

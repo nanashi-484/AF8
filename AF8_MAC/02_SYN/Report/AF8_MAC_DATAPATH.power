@@ -1,0 +1,53 @@
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : AF8_MAC_DATAPATH
+Version: R-2020.09
+Date   : Sat May 23 16:14:51 2026
+****************************************
+
+
+Library(s) Used:
+
+    sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c (File: /CAD/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db)
+
+
+Operating Conditions: tt_typical_max_0p90v_25c   Library: sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+AF8_MAC_DATAPATH       Small             sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+
+
+Global Operating Voltage = 0.9  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1uW
+
+
+  Cell Internal Power  = 157.2661 uW   (42%)
+  Net Switching Power  = 216.2740 uW   (58%)
+                         ---------
+Total Dynamic Power    = 373.5401 uW  (100%)
+
+Cell Leakage Power     =  25.2206 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       5.3850e-02        1.9999e-03            0.9111        5.6761e-02  (  14.23%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational      0.1034            0.2143           24.3095            0.3420  (  85.77%)
+--------------------------------------------------------------------------------------------------
+Total              0.1573 mW         0.2163 mW        25.2206 uW         0.3988 mW
+1

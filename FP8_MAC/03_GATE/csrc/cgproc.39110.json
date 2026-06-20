@@ -1,0 +1,31 @@
+{
+    "ObjArchives": [
+        {
+            "size": 178668,
+            "archive": "archive.0/_39110_archive_1.a",
+            "objects": [
+                [
+                    "TAUdR_d.o",
+                    178668
+                ]
+            ]
+        }
+    ],
+    "Modules": {
+        "TESTBED": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "CompUnits": {
+        "TAUdR_d": {
+            "archive": "archive.0/_39110_archive_1.a",
+            "mod": "TESTBED",
+            "checksum": 0,
+            "out": "TAUdR_d.o",
+            "bytes": 178668,
+            "mode": 4
+        }
+    },
+    "reusePaths": {}
+}

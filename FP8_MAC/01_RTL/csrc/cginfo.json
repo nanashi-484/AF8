@@ -1,0 +1,167 @@
+{
+    "MlibObjs": {},
+    "PrevCompiledModules": {
+        "TESTBED": {
+            "TAUdR_d": {
+                "bytes": 178668,
+                "archive": "archive.5/_148537_archive_1.a",
+                "mod": "TESTBED",
+                "out": "TAUdR_d.o",
+                "checksum": 0,
+                "mode": 4
+            }
+        },
+        "std": {
+            "reYIK_d": {
+                "bytes": 42043,
+                "archive": "archive.5/_prev_archive_1.a",
+                "mod": "std",
+                "checksum": 0,
+                "mode": 4,
+                "out": "reYIK_d.o"
+            }
+        },
+        "fp8_pattern_pkg": {
+            "pueqJ_d": {
+                "bytes": 28262,
+                "archive": "archive.5/_148522_archive_1.a",
+                "mod": "fp8_pattern_pkg",
+                "checksum": 0,
+                "mode": 4,
+                "out": "pueqJ_d.o"
+            }
+        },
+        "...MASTER...": {
+            "amcQw_d": {
+                "bytes": 7804,
+                "mod": "...MASTER...",
+                "checksum": 0,
+                "mode": 4,
+                "out": "objs/amcQw_d.o"
+            }
+        }
+    },
+    "NameTable": {
+        "TESTBED": [
+            "TESTBED",
+            "TAUdR",
+            "module"
+        ],
+        "fp8_pattern_pkg": [
+            "fp8_pattern_pkg",
+            "pueqJ",
+            "module"
+        ],
+        "std": [
+            "std",
+            "reYIK",
+            "module"
+        ],
+        "fp8_to_fp32_aligner": [
+            "fp8_to_fp32_aligner",
+            "DZpia",
+            "module"
+        ],
+        "...MASTER...": [
+            "SIM",
+            "amcQw",
+            "module"
+        ],
+        "FP8_MAC_DATAPATH": [
+            "FP8_MAC_DATAPATH",
+            "Py3qT",
+            "module"
+        ],
+        "fp8_adder": [
+            "fp8_adder",
+            "Qp9uW",
+            "module"
+        ]
+    },
+    "CurCompileUdps": {},
+    "CompileStrategy": "fullobj",
+    "stat": {
+        "ru_childs_end": {
+            "ru_maxrss_kb": 32104,
+            "ru_utime_sec": 0.087890999999999997,
+            "ru_stime_sec": 0.071484000000000006,
+            "ru_majflt": 0,
+            "ru_minflt": 7098,
+            "ru_nvcsw": 100,
+            "ru_nivcsw": 13
+        },
+        "mopSpeed": 97594.267189899329,
+        "ru_self_cgstart": {
+            "ru_maxrss_kb": 61224,
+            "ru_utime_sec": 0.174507,
+            "ru_stime_sec": 0.051853000000000003,
+            "ru_majflt": 0,
+            "ru_minflt": 16263,
+            "ru_nvcsw": 360,
+            "ru_nivcsw": 52
+        },
+        "ru_self_end": {
+            "ru_maxrss_kb": 69272,
+            "ru_utime_sec": 0.244839,
+            "ru_stime_sec": 0.073951000000000003,
+            "ru_majflt": 0,
+            "ru_minflt": 19968,
+            "ru_nvcsw": 585,
+            "ru_nivcsw": 70
+        },
+        "ru_childs_cgstart": {
+            "ru_maxrss_kb": 16444,
+            "ru_utime_sec": 0.010156999999999999,
+            "ru_stime_sec": 0.045080000000000002,
+            "ru_majflt": 0,
+            "ru_minflt": 2215,
+            "ru_nvcsw": 22,
+            "ru_nivcsw": 9
+        },
+        "outputSizePerQuad": 80.0,
+        "nMops": 6864,
+        "nQuads": 2385,
+        "totalObjSize": 191445,
+        "CodeGen(%)": 28.725815740139442,
+        "mop/quad": 2.8779874213836476,
+        "quadSpeed": 33910.595461525336,
+        "Frontend(%)": 71.274184259860561,
+        "peak_mem_kb": 225220
+    },
+    "CurCompileModules": [
+        "...MASTER...",
+        "...MASTER...",
+        "fp8_pattern_pkg",
+        "fp8_pattern_pkg",
+        "std",
+        "FP8_MAC_DATAPATH",
+        "FP8_MAC_DATAPATH",
+        "fp8_to_fp32_aligner",
+        "fp8_to_fp32_aligner",
+        "fp8_adder",
+        "fp8_adder"
+    ],
+    "LVLData": [
+        "SIM"
+    ],
+    "SIMBData": {
+        "out": "amcQwB.o",
+        "bytes": 89865,
+        "archive": "archive.5/_148522_archive_1.a"
+    },
+    "PEModules": [],
+    "CompileProcesses": [
+        "cgproc.148522.json",
+        "cgproc.148537.json"
+    ],
+    "Misc": {
+        "cwd": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/01_RTL",
+        "csrc": "csrc",
+        "csrc_abs": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/01_RTL/csrc",
+        "archive_dir": "archive.5",
+        "default_output_dir": "csrc",
+        "daidir_abs": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/01_RTL/simv.daidir",
+        "daidir": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/01_RTL/simv.daidir"
+    },
+    "CompileStatus": "Successful"
+}

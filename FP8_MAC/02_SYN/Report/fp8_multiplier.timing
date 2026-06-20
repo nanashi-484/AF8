@@ -1,0 +1,104 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 3
+Design : fp8_multiplier
+Version: R-2020.09
+Date   : Sat May 23 16:19:17 2026
+****************************************
+
+Operating Conditions: tt_typical_max_0p90v_25c   Library: sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+Wire Load Model Mode: top
+
+  Startpoint: exp_w[0] (input port)
+  Endpoint: exp_prod[4]
+            (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fp8_multiplier     Small                 sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  exp_w[0] (in)                            0.00       0.00 f
+  U18/Y (INV_X0P5B_A9TR)                   0.11       0.11 r
+  U19/Y (INV_X0P5B_A9TR)                   0.07       0.18 f
+  U48/Y (AND2_X0P5B_A9TR)                  0.08       0.26 f
+  U69/CO (ADDF_X1M_A9TR)                   0.06       0.32 f
+  U70/CO (ADDF_X1M_A9TR)                   0.06       0.38 f
+  U67/S (ADDF_X1M_A9TR)                    0.05       0.43 f
+  U68/Y (INV_X0P5B_A9TR)                   0.05       0.48 r
+  U38/Y (NAND2_X0P5A_A9TR)                 0.07       0.56 f
+  U65/Y (NOR2_X2A_A9TR)                    0.19       0.75 r
+  U81/Y (AO21_X1M_A9TR)                    0.24       0.99 r
+  exp_prod[4] (out)                        0.00       0.99 r
+  data arrival time                                   0.99
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: man_w[1] (input port)
+  Endpoint: man_prod[7]
+            (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fp8_multiplier     Small                 sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  man_w[1] (in)                            0.00       0.00 f
+  U34/Y (INV_X0P5B_A9TR)                   0.11       0.11 r
+  U35/Y (INV_X0P5B_A9TR)                   0.14       0.25 f
+  U73/Y (NAND4_X0P5M_A9TR)                 0.12       0.37 r
+  U41/Y (AOI21B_X0P5M_A9TR)                0.10       0.47 r
+  U86/CO (ADDF_X1M_A9TR)                   0.08       0.55 r
+  U85/CO (ADDF_X1M_A9TR)                   0.06       0.61 r
+  U84/CO (ADDF_X1M_A9TR)                   0.06       0.66 r
+  U83/CO (ADDF_X1M_A9TR)                   0.07       0.73 r
+  U59/Y (OA1B2_X1P4M_A9TR)                 0.22       0.95 r
+  man_prod[7] (out)                        0.00       0.95 r
+  data arrival time                                   0.95
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+  Startpoint: man_w[1] (input port)
+  Endpoint: man_prod[6]
+            (output port)
+  Path Group: (none)
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  fp8_multiplier     Small                 sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+
+  Point                                    Incr       Path
+  -----------------------------------------------------------
+  input external delay                     0.00       0.00 f
+  man_w[1] (in)                            0.00       0.00 f
+  U34/Y (INV_X0P5B_A9TR)                   0.11       0.11 r
+  U35/Y (INV_X0P5B_A9TR)                   0.14       0.25 f
+  U73/Y (NAND4_X0P5M_A9TR)                 0.12       0.37 r
+  U41/Y (AOI21B_X0P5M_A9TR)                0.10       0.47 r
+  U86/CO (ADDF_X1M_A9TR)                   0.08       0.55 r
+  U85/CO (ADDF_X1M_A9TR)                   0.06       0.61 r
+  U84/CO (ADDF_X1M_A9TR)                   0.06       0.66 r
+  U83/CO (ADDF_X1M_A9TR)                   0.07       0.73 r
+  U78/Y (OAI21_X0P5M_A9TR)                 0.05       0.78 f
+  U64/Y (OAI31_X3M_A9TR)                   0.16       0.94 r
+  man_prod[6] (out)                        0.00       0.94 r
+  data arrival time                                   0.94
+  -----------------------------------------------------------
+  (Path is unconstrained)
+
+
+1

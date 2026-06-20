@@ -1,0 +1,177 @@
+0 
+41
++define+RTL
++incdir+/usr/cad/synopsys/synthesis/cur/dw/sim_ver/
++itf+/usr/cad/synopsys/vcs-mx/cur/linux64/lib/vcsdp_lite.tab
++libext+.v
++notimingchecks
++v2k
++vcsd1
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/usr/cad/synopsys/vcs-mx/cur/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mexternalobj=
+-Mldflags= -rdynamic
+-Mobjects= /usr/cad/synopsys/vcs-mx/cur/linux64/lib/libvirsim.so /usr/cad/synopsys/vcs-mx/cur/linux64/lib/liberrorinf.so /usr/cad/synopsys/vcs-mx/cur/linux64/lib/libsnpsmalloc.so
+-Mout=simv
+-Msaverestoreobj=/usr/cad/synopsys/vcs-mx/cur/linux64/lib/vcs_save_restore_new.o
+-Msyslibs=-ldl
+-Mupdate
+-Mvcsaceobjs=
+-Mxcflags= -pipe -fPIC -I/usr/cad/synopsys/vcs-mx/cur/include
+-Xvcs_run_simv=1
+-debug_access+all
+-debug_region+cell+encrypt
+-f filelist.f
+-full64
+-gen_obj
+-j4
+-l
+-o simv
+-picarchive
+-sverilog
+-timescale=1ns/1fs
+-y
+/usr/cad/synopsys/synthesis/cur/dw/sim_ver/
+/usr/cad/synopsys/vcs-mx/cur/linux64/bin/vcs1
+vcs.log
+120
+sysc_uni_pwd=/home/UnderGraduate2/2025/112511250/AF8_MAC/01_RTL
+synopsys=/usr/cad/synopsys/ncx/cur
+mraarch=linux_64
+installdir=/usr/cad/synopsys/hspice/2016.06-sp2/hspice
+define=
+XLOCALEDIR=/usr/cad/synopsys/icc2/cur/etc/locale
+XKEYSYMDB=/usr/cad/synopsys/astro/cur/etc/XKeysymDB
+XDG_SESSION_ID=11337
+XDG_RUNTIME_DIR=/run/user/3295
+VRE_LIB_ROOT=/usr/cad/synopsys/pa_virtualizer/cur/SLS/linux/InnoRuntime/Libraries
+VMR_MODE_FLAG=64
+VERPLEX_HOME=/usr/cad/cadence/CONFRML/cur
+VERA_HOME=/usr/cad/synopsys/vera/cur/cur
+VENDOR=unknown
+VCS_MX_HOME_INTERNAL=1
+VCS_MODE_FLAG=64
+VCS_LOG_FILE=vcs.log
+VCS_HOME=/usr/cad/synopsys/vcs-mx/cur
+VCS_DEPTH=0
+VCS_CC=gcc
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=linux64
+UNAME=/bin/uname
+TOOL_HOME=/usr/cad/synopsys/vcs-mx/cur/linux64
+TMIARCH=RH_64
+SYN_MAN_DIR=/usr/cad/synopsys/synthesis/cur/doc/syn/man
+SYNTHESIS=/usr/cad/synopsys/synthesis/cur
+SYNOPSYS_synplify=/usr/cad/synopsys/synplify/cur
+SYNOPSYS_identify=/usr/cad/synopsys/identify/cur
+SYNOPSYS_TMAX=/usr/cad/synopsys/tmax/cur
+SYNOPSYS_PATH=/CAD/synopsys
+SYNOPSYS_NCX_ROOT=/user/cad/synopsys/ncx/cur
+SYNOPSYS_HOME=/usr/cad/synopsys/synthesis/cur
+SYNOPSYS=/usr/cad/synopsys/icc/cur
+SSH_TTY=/dev/pts/0
+SSH_CONNECTION=140.113.121.77 1738 140.113.202.148 22
+SSH_CLIENT=140.113.121.77 1738 22
+SOFT_MAN_DIR=/usr/cad/synopsys/coreconsultant/cur/doc/dware/man
+SNPS_VP_UBUNTU=
+SNPS_VP_PRODUCT=PA
+SNPS_VP_HTYPE=linux
+SNPS_VP_HOME=/usr/cad/synopsys/pa_virtualizer/cur/SLS/linux
+SNPS_VP_DOC=/usr/cad/synopsys/pa_virtualizer/vK-2015.12-SP1/Documentation
+SNPS_VIEW_CONFIG_PATH=/home/UnderGraduate2/2025/112511250/.synopsys/viewconfig:/usr/cad/synopsys/pa_virtualizer/cur/SLS/linux/IP:/usr/cad/synopsys/pa_virtualizer/cur/SLS/linux/common/etc/viewconfig
+SNPS_SIMIF=/usr/cad/synopsys/nanosim/cur
+SNPS_PLATFORM=linux64
+SNPS_64=1
+SHLIB_PATH=/usr/cad/synopsys/verdi/cur/share/PLI/IUS/LINUX
+SG_HTML_BROWSER=/usr/bin/mozilla
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+SALT_LICENSE_SERVER=1717@lshc
+SALT_LICENSE_FILE=1717@lshc
+RVDEBUG_INSTALL=
+REMOTEHOST=140.113.121.77
+QT_GRAPHICSSYSTEM_CHECKED=1
+QTLIB=/usr/lib64/qt-3.3/lib
+QTINC=/usr/lib64/qt-3.3/include
+QTDIR=/usr/lib64/qt-3.3
+PRIMETIME=/usr/cad/synopsys/primetime/cur
+PRIMERAIL=/usr/cad/synopsys/primerail/cur
+PRIMEPOWER=/usr/cad/synopsys/primepower/cur
+PCTHOME=/usr/cad/synopsys/pa_virtualizer/cur/SLS/linux/pc
+OVA_UUM=0
+OSTYPE=linux
+OA_HOME=/usr/cad/cadence/EDI/cur/oa
+OAHOME=/usr/cad/cadence/oa_v22.04.073
+NEOCKTHOME=/usr/cad/cadence/NEOCIRCUIT/cur/tools/NeoCircuit
+NCV_PATH=/user/cad/cadence/IUS/cur/tools
+MTI_VCO_MODE=32
+MODELSIM_PATH=/usr/cad/mentor/modelsim/cur/modeltech/linux_x86_64
+MG_HOME=/usr/cad/synopsys/magellan/cur
+MGC_TMPDIR=/tmp
+MGC_LOCATION_MAP=NO_MAP
+MGC_HOME=/usr/cad/mentor/calibre/aoi_cal_2018.2_24.18
+MFLAGS=
+MAXSIM_HOME=/CAD/ARM/socdesigner/cur/
+MAXCORE_HOME=/CAD/ARM/coregenerator/cur
+MAKEOVERRIDES=${-*-command-variables-*-}
+MAKELEVEL=1
+MAKEFLAGS=define=
+Laker_TCL_ToolBox=1
+Laker_TCL_L3=1
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_ALL=C
+HSP_HOME=/usr/cad/synopsys/hspice/2016.06-sp2/hspice
+HSP_GCC_VERSION=4.8.3
+HSP_GCC=/usr/cad/synopsys/hspice/2016.06-sp2/hspice/GNU/linux64/gcc-4.8.3/bin/gcc -m64 
+HOSTTYPE=x86_64-linux
+GROUP=user01
+GC_NO_BLACKLIST_WARNING=1
+FORMALITY=/usr/cad/synopsys/formality/cur
+ENCOUNTER=/usr/cad/cadence/EDI/cur/tools/fe
+C_INCLUDE_PATH=/CAD/ARM/coregenerator/cur/gnu-toolchain/include
+CYLMD_LICENSE_FILE=8182@lscic.cic.org.tw
+CYBER_SYSTEMC_HOME=/usr/cad/NEC/cwb/cur/osci
+CYBER_PATH=/usr/cad/NEC/cwb/cur
+CYBER_LIB=/usr/cad/NEC/cwb/cur/lib
+CPLUS_INCLUDE_PATH=/CAD/ARM/coregenerator/cur/gnu-toolchain/include/c++
+COWARE_PRODUCT=PA
+COWARE_MONITORS_PATH=/home/UnderGraduate2/2025/112511250/.synopsys/monitors:/usr/cad/synopsys/pa_virtualizer/cur/SLS/linux/IP
+COWARE_JRE=/usr/cad/synopsys/pa_virtualizer/cur/SLS/linux/../linux/java
+COWARE_CXX_COMPILER=gcc-4.8.3-64
+COWARE_AUX_BIN=/usr/cad/synopsys/pa_virtualizer/cur/SLS/linux/common/bin
+COWAREHT=linux
+COWAREHOME=/usr/cad/synopsys/pa_virtualizer/cur/SLS/linux
+COWAREDOC_INSTALLED_AT=/usr/cad/synopsys/pa_virtualizer/vK-2015.12-SP1/Documentation
+CMIARCH=RH_64
+CDS_LOAD_ENV=CSF
+CDS_AUTO_64BIT=NONE
+CALIBRE_HOME=/usr/cad/mentor/calibre/aoi_cal_2018.2_24.18
+BISON_SIMPLE=/CAD/ARM/coregenerator/cur/gnu-toolchain/share/bison.simple
+BISON_HAIRY=/CAD/ARM/coregenerator/cur/gnu-toolchain/share/bison.hairy
+ASSURAHOME=/usr/cad/cadence/ASSURA/cur
+ASSERTAIN=/usr/cad/transeda/assertain/cur
+ARM_ESL_GNU_PATH=/CAD/ARM/coregenerator/cur/gnu-toolchain
+ARMLMD_LICENSE_FILE=/CAD/ARM/socdesigner/cur/etc/license.dat
+ARM=/CAD/ARM
+ARCHELON_HOME=/CAD/ARM/coregenerator/cur/Archelon
+ARCH=linux64
+0
+5
+1777974003 TESTBED.sv
+1777973989 PATTERN.sv
+1779522858 ../01_RTL/AF8_MAC.sv
+1777974025 filelist.f
+1475031856 /usr/cad/synopsys/vcs-mx/cur/linux64/lib/vcsdp_lite.tab
+4
+0 
+1475034294 /usr/cad/synopsys/vcs-mx/cur/linux64/lib/libvirsim.so
+1475033721 /usr/cad/synopsys/vcs-mx/cur/linux64/lib/liberrorinf.so
+1475033689 /usr/cad/synopsys/vcs-mx/cur/linux64/lib/libsnpsmalloc.so
+1779522866 simv.daidir

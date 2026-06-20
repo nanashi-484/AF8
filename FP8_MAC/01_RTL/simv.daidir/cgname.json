@@ -1,0 +1,37 @@
+{
+    "TESTBED": [
+        "TESTBED",
+        "TAUdR",
+        "module"
+    ],
+    "fp8_pattern_pkg": [
+        "fp8_pattern_pkg",
+        "pueqJ",
+        "module"
+    ],
+    "std": [
+        "std",
+        "reYIK",
+        "module"
+    ],
+    "fp8_to_fp32_aligner": [
+        "fp8_to_fp32_aligner",
+        "DZpia",
+        "module"
+    ],
+    "...MASTER...": [
+        "SIM",
+        "amcQw",
+        "module"
+    ],
+    "FP8_MAC_DATAPATH": [
+        "FP8_MAC_DATAPATH",
+        "Py3qT",
+        "module"
+    ],
+    "fp8_adder": [
+        "fp8_adder",
+        "Qp9uW",
+        "module"
+    ]
+}

@@ -1,0 +1,107 @@
+{
+    "MlibObjs": {},
+    "PrevCompiledModules": {},
+    "SIMBData": {
+        "out": "amcQwB.o",
+        "bytes": 90493,
+        "archive": "archive.0/_39103_archive_1.a"
+    },
+    "CurCompileUdps": {},
+    "CompileStatus": "Successful",
+    "NameTable": {
+        "std": [
+            "std",
+            "reYIK",
+            "module"
+        ],
+        "fp8_pattern_pkg": [
+            "fp8_pattern_pkg",
+            "pueqJ",
+            "module"
+        ],
+        "TESTBED": [
+            "TESTBED",
+            "TAUdR",
+            "module"
+        ],
+        "...MASTER...": [
+            "SIM",
+            "amcQw",
+            "module"
+        ]
+    },
+    "CompileStrategy": "fullobj",
+    "stat": {
+        "ru_self_cgstart": {
+            "ru_majflt": 0,
+            "ru_utime_sec": 0.155997,
+            "ru_stime_sec": 0.056635999999999999,
+            "ru_maxrss_kb": 61824,
+            "ru_nivcsw": 37,
+            "ru_nvcsw": 291,
+            "ru_minflt": 16286
+        },
+        "totalObjSize": 168602,
+        "ru_self_end": {
+            "ru_majflt": 0,
+            "ru_utime_sec": 0.20141500000000001,
+            "ru_stime_sec": 0.079197000000000004,
+            "ru_maxrss_kb": 68812,
+            "ru_nivcsw": 49,
+            "ru_nvcsw": 472,
+            "ru_minflt": 19173
+        },
+        "ru_childs_cgstart": {
+            "ru_majflt": 0,
+            "ru_utime_sec": 0.01294,
+            "ru_stime_sec": 0.055793000000000002,
+            "ru_maxrss_kb": 19488,
+            "ru_nivcsw": 15,
+            "ru_nvcsw": 20,
+            "ru_minflt": 2856
+        },
+        "quadSpeed": 15522.480073979475,
+        "mopSpeed": 47712.360738033363,
+        "nMops": 2167,
+        "nQuads": 705,
+        "ru_childs_end": {
+            "ru_majflt": 0,
+            "ru_utime_sec": 0.10025100000000001,
+            "ru_stime_sec": 0.071489999999999998,
+            "ru_maxrss_kb": 34716,
+            "ru_nivcsw": 19,
+            "ru_nvcsw": 80,
+            "ru_minflt": 7176
+        },
+        "mop/quad": 3.0737588652482271,
+        "peak_mem_kb": 225408,
+        "outputSizePerQuad": 239.0,
+        "Frontend(%)": 77.450537447558517,
+        "CodeGen(%)": 22.549462552441483
+    },
+    "CurCompileModules": [
+        "...MASTER...",
+        "...MASTER...",
+        "fp8_pattern_pkg",
+        "fp8_pattern_pkg",
+        "std",
+        "std"
+    ],
+    "Misc": {
+        "cwd": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/03_GATE",
+        "csrc_abs": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/03_GATE/csrc",
+        "csrc": "csrc",
+        "daidir": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/03_GATE/simv.daidir",
+        "archive_dir": "archive.0",
+        "daidir_abs": "/mnt/newNAS/home/UnderGraduate2/2025/112511250/FP8_MAC/03_GATE/simv.daidir",
+        "default_output_dir": "csrc"
+    },
+    "LVLData": [
+        "SIM"
+    ],
+    "PEModules": [],
+    "CompileProcesses": [
+        "cgproc.39103.json",
+        "cgproc.39110.json"
+    ]
+}

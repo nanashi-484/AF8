@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : AF8_MAC_DATAPATH
+Version: R-2020.09
+Date   : Sat May 23 16:14:51 2026
+****************************************
+
+Library(s) Used:
+
+    sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c (File: /CAD/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db)
+
+Number of ports:                           94
+Number of nets:                          1407
+Number of cells:                         1275
+Number of combinational cells:           1240
+Number of sequential cells:                35
+Number of macros/black boxes:               0
+Number of buf/inv:                        217
+Number of references:                     173
+
+Combinational area:               1837.987177
+Buf/Inv area:                      168.058797
+Noncombinational area:             158.759992
+Macro/Black Box area:                0.000000
+Net Interconnect area:               0.000000
+
+Total cell area:                  1996.747169
+Total area:                       1996.747169
+1

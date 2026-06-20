@@ -4,7 +4,7 @@ Report : power
         -analysis_effort low
 Design : FP8_MAC
 Version: R-2020.09
-Date   : Tue May  5 03:15:10 2026
+Date   : Sat May 23 16:12:20 2026
 ****************************************
 
 
@@ -30,12 +30,12 @@ Power-specific unit information :
     Leakage Power Units = 1uW
 
 
-  Cell Internal Power  =  37.6376 uW   (43%)
-  Net Switching Power  =  50.8298 uW   (57%)
+  Cell Internal Power  =  31.9181 uW   (40%)
+  Net Switching Power  =  48.1083 uW   (60%)
                          ---------
-Total Dynamic Power    =  88.4674 uW  (100%)
+Total Dynamic Power    =  80.0264 uW  (100%)
 
-Cell Leakage Power     =  19.6996 uW
+Cell Leakage Power     =  13.6701 uW
 
 
                  Internal         Switching           Leakage            Total
@@ -45,9 +45,9 @@ io_pad             0.0000            0.0000            0.0000            0.0000 
 memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
 black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
 clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
-register       1.4388e-02        3.7936e-04            1.0784        1.5846e-02  (  14.65%)
+register       1.4139e-02        4.2403e-04            0.9524        1.5515e-02  (  16.56%)
 sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
-combinational  2.3250e-02        5.0450e-02           18.6212        9.2321e-02  (  85.35%)
+combinational  1.7779e-02        4.7684e-02           12.7133        7.8177e-02  (  83.44%)
 --------------------------------------------------------------------------------------------------
-Total          3.7638e-02 mW     5.0830e-02 mW        19.6996 uW         0.1082 mW
+Total          3.1918e-02 mW     4.8108e-02 mW        13.6657 uW     9.3692e-02 mW
 1

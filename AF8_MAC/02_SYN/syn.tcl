@@ -7,17 +7,18 @@
 #======================================================
 # (A) Global Parameters
 #======================================================
-set DESIGN "AF8_MAC"
-set CYCLE 10.0
-set INPUT_DLY  [expr 0.5*$CYCLE]
-set OUTPUT_DLY [expr 0.5*$CYCLE]
+set FILE_NAME "AF8_MAC" 
+set DESIGN "AF8_MAC_DATAPATH" 
+set CYCLE 2.5
+set INPUT_DLY  [expr 0.1*$CYCLE]
+set OUTPUT_DLY [expr 0.1*$CYCLE]
 
 #======================================================
 # (B) Read RTL Code
 #======================================================
 # (B-1) analyze + elaborate
 set hdlin_auto_save_templates TRUE
-analyze -f sverilog "../01_RTL/${DESIGN}.sv"
+analyze -f sverilog "../01_RTL/${FILE_NAME}.sv"
 elaborate $DESIGN
 
 # (B-2) read_sverilog

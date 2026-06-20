@@ -1,0 +1,38 @@
+ 
+****************************************
+check_design summary:
+Version:     R-2020.09
+Date:        Sat May 23 16:14:26 2026
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                     15
+    Feedthrough (LINT-29)                                          10
+    Shorted outputs (LINT-31)                                       2
+    Constant outputs (LINT-52)                                      3
+
+Cells                                                               4
+    Cells do not drive (LINT-1)                                     4
+--------------------------------------------------------------------------------
+
+Warning: In design 'af8_to_fp32_aligner', cell 'B_2' does not drive any nets. (LINT-1)
+Warning: In design 'af8_to_fp32_aligner', cell 'B_3' does not drive any nets. (LINT-1)
+Warning: In design 'af8_adder', cell 'B_4' does not drive any nets. (LINT-1)
+Warning: In design 'af8_adder', cell 'B_5' does not drive any nets. (LINT-1)
+Warning: In design 'af8_adder', input port 'exp_common[9]' is connected directly to output port 'exp_out[9]'. (LINT-29)
+Warning: In design 'af8_adder', input port 'exp_common[8]' is connected directly to output port 'exp_out[8]'. (LINT-29)
+Warning: In design 'af8_adder', input port 'exp_common[7]' is connected directly to output port 'exp_out[7]'. (LINT-29)
+Warning: In design 'af8_adder', input port 'exp_common[6]' is connected directly to output port 'exp_out[6]'. (LINT-29)
+Warning: In design 'af8_adder', input port 'exp_common[5]' is connected directly to output port 'exp_out[5]'. (LINT-29)
+Warning: In design 'af8_adder', input port 'exp_common[4]' is connected directly to output port 'exp_out[4]'. (LINT-29)
+Warning: In design 'af8_adder', input port 'exp_common[3]' is connected directly to output port 'exp_out[3]'. (LINT-29)
+Warning: In design 'af8_adder', input port 'exp_common[2]' is connected directly to output port 'exp_out[2]'. (LINT-29)
+Warning: In design 'af8_adder', input port 'exp_common[1]' is connected directly to output port 'exp_out[1]'. (LINT-29)
+Warning: In design 'af8_adder', input port 'exp_common[0]' is connected directly to output port 'exp_out[0]'. (LINT-29)
+Warning: In design 'af8_to_fp32_aligner', output port 'aligned_man_acc[26]' is connected directly to output port 'aligned_man_acc[25]'. (LINT-31)
+Warning: In design 'af8_to_fp32_aligner', output port 'aligned_man_acc[26]' is connected directly to output port 'aligned_man_acc[24]'. (LINT-31)
+Warning: In design 'af8_to_fp32_aligner', output port 'aligned_man_acc[26]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'af8_to_fp32_aligner', output port 'aligned_man_acc[25]' is connected directly to 'logic 0'. (LINT-52)
+Warning: In design 'af8_to_fp32_aligner', output port 'aligned_man_acc[24]' is connected directly to 'logic 0'. (LINT-52)
+1

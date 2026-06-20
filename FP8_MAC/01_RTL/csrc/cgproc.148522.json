@@ -1,0 +1,99 @@
+{
+    "Modules": {
+        "fp8_adder": {
+            "Compiled Times": 1,
+            "Compiled": "Yes"
+        },
+        "FP8_MAC_DATAPATH": {
+            "Compiled Times": 1,
+            "Compiled": "Yes"
+        },
+        "...MASTER...": {},
+        "std": {
+            "Compiled Times": 6,
+            "Compiled": "Yes"
+        },
+        "fp8_pattern_pkg": {
+            "Compiled Times": 6,
+            "Compiled": "Yes"
+        },
+        "fp8_to_fp32_aligner": {
+            "Compiled Times": 1,
+            "Compiled": "Yes"
+        }
+    },
+    "ObjArchives": [
+        {
+            "archive": "archive.5/_148522_archive_1.a",
+            "objects": [
+                [
+                    "pueqJ_d.o",
+                    28262
+                ],
+                [
+                    "Py3qT_d.o",
+                    29584
+                ],
+                [
+                    "DZpia_d.o",
+                    16705
+                ],
+                [
+                    "Qp9uW_d.o",
+                    17454
+                ],
+                [
+                    "amcQwB.o",
+                    89865
+                ]
+            ],
+            "size": 181870
+        }
+    ],
+    "CompUnits": {
+        "pueqJ_d": {
+            "archive": "archive.5/_148522_archive_1.a",
+            "mod": "fp8_pattern_pkg",
+            "out": "pueqJ_d.o",
+            "bytes": 28262,
+            "checksum": 0,
+            "mode": 4
+        },
+        "amcQw_d": {
+            "mod": "...MASTER...",
+            "out": "objs/amcQw_d.o",
+            "bytes": 9575,
+            "checksum": 0,
+            "mode": 4
+        },
+        "Py3qT_d": {
+            "archive": "archive.5/_148522_archive_1.a",
+            "mod": "FP8_MAC_DATAPATH",
+            "out": "Py3qT_d.o",
+            "bytes": 29584,
+            "checksum": 0,
+            "mode": 4
+        },
+        "DZpia_d": {
+            "archive": "archive.5/_148522_archive_1.a",
+            "mod": "fp8_to_fp32_aligner",
+            "out": "DZpia_d.o",
+            "bytes": 16705,
+            "checksum": 0,
+            "mode": 4
+        },
+        "Qp9uW_d": {
+            "archive": "archive.5/_148522_archive_1.a",
+            "mod": "fp8_adder",
+            "out": "Qp9uW_d.o",
+            "bytes": 17454,
+            "checksum": 0,
+            "mode": 4
+        }
+    },
+    "reusePaths": {
+        "reYIK_d": {
+            "icPath": "csrc"
+        }
+    }
+}

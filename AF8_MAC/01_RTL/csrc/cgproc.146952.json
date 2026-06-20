@@ -1,0 +1,99 @@
+{
+    "Modules": {
+        "std": {
+            "Compiled": "Yes",
+            "Compiled Times": 3
+        },
+        "...MASTER...": {},
+        "af8_pattern_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 3
+        },
+        "af8_to_fp32_aligner": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "AF8_MAC_DATAPATH": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "af8_adder": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "ObjArchives": [
+        {
+            "archive": "archive.2/_146952_archive_1.a",
+            "objects": [
+                [
+                    "JHBNk_d.o",
+                    26959
+                ],
+                [
+                    "GmnMR_d.o",
+                    29758
+                ],
+                [
+                    "IIGaH_d.o",
+                    17094
+                ],
+                [
+                    "zWJxN_d.o",
+                    17455
+                ],
+                [
+                    "amcQwB.o",
+                    89865
+                ]
+            ],
+            "size": 181131
+        }
+    ],
+    "CompUnits": {
+        "amcQw_d": {
+            "mod": "...MASTER...",
+            "bytes": 9575,
+            "out": "objs/amcQw_d.o",
+            "mode": 4,
+            "checksum": 0
+        },
+        "JHBNk_d": {
+            "archive": "archive.2/_146952_archive_1.a",
+            "mod": "af8_pattern_pkg",
+            "bytes": 26959,
+            "out": "JHBNk_d.o",
+            "mode": 4,
+            "checksum": 0
+        },
+        "GmnMR_d": {
+            "archive": "archive.2/_146952_archive_1.a",
+            "mod": "AF8_MAC_DATAPATH",
+            "bytes": 29758,
+            "out": "GmnMR_d.o",
+            "mode": 4,
+            "checksum": 0
+        },
+        "IIGaH_d": {
+            "archive": "archive.2/_146952_archive_1.a",
+            "mod": "af8_to_fp32_aligner",
+            "bytes": 17094,
+            "out": "IIGaH_d.o",
+            "mode": 4,
+            "checksum": 0
+        },
+        "zWJxN_d": {
+            "archive": "archive.2/_146952_archive_1.a",
+            "mod": "af8_adder",
+            "bytes": 17455,
+            "out": "zWJxN_d.o",
+            "mode": 4,
+            "checksum": 0
+        }
+    },
+    "reusePaths": {
+        "reYIK_d": {
+            "icPath": "csrc"
+        }
+    }
+}

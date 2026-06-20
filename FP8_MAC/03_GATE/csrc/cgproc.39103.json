@@ -1,0 +1,59 @@
+{
+    "ObjArchives": [
+        {
+            "size": 160798,
+            "archive": "archive.0/_39103_archive_1.a",
+            "objects": [
+                [
+                    "pueqJ_d.o",
+                    28262
+                ],
+                [
+                    "reYIK_d.o",
+                    42043
+                ],
+                [
+                    "amcQwB.o",
+                    90493
+                ]
+            ]
+        }
+    ],
+    "Modules": {
+        "...MASTER...": {},
+        "fp8_pattern_pkg": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        },
+        "std": {
+            "Compiled": "Yes",
+            "Compiled Times": 1
+        }
+    },
+    "CompUnits": {
+        "reYIK_d": {
+            "archive": "archive.0/_39103_archive_1.a",
+            "mod": "std",
+            "checksum": 0,
+            "out": "reYIK_d.o",
+            "bytes": 42043,
+            "mode": 4
+        },
+        "amcQw_d": {
+            "mod": "...MASTER...",
+            "checksum": 0,
+            "out": "objs/amcQw_d.o",
+            "bytes": 7804,
+            "mode": 4
+        },
+        "pueqJ_d": {
+            "archive": "archive.0/_39103_archive_1.a",
+            "mod": "fp8_pattern_pkg",
+            "checksum": 0,
+            "out": "pueqJ_d.o",
+            "bytes": 28262,
+            "mode": 4
+        }
+    },
+    "reusePaths": {}
+}

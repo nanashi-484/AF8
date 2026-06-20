@@ -1,0 +1,31 @@
+ 
+****************************************
+check_design summary:
+Version:     R-2020.09
+Date:        Sat May 23 16:13:06 2026
+****************************************
+
+                   Name                                            Total
+--------------------------------------------------------------------------------
+Inputs/Outputs                                                      8
+    Feedthrough (LINT-29)                                           8
+
+Cells                                                               6
+    Cells do not drive (LINT-1)                                     6
+--------------------------------------------------------------------------------
+
+Warning: In design 'fp8_to_fp32_aligner_MANT_WIDTH28', cell 'B_3' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_to_fp32_aligner_MANT_WIDTH28', cell 'B_4' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_to_fp32_aligner_MANT_WIDTH28', cell 'B_5' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_to_fp32_aligner_MANT_WIDTH28', cell 'B_6' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_adder_MANT_WIDTH28', cell 'B_4' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_adder_MANT_WIDTH28', cell 'B_5' does not drive any nets. (LINT-1)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[7]' is connected directly to output port 'exp_out[7]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[6]' is connected directly to output port 'exp_out[6]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[5]' is connected directly to output port 'exp_out[5]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[4]' is connected directly to output port 'exp_out[4]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[3]' is connected directly to output port 'exp_out[3]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[2]' is connected directly to output port 'exp_out[2]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[1]' is connected directly to output port 'exp_out[1]'. (LINT-29)
+Warning: In design 'fp8_adder_MANT_WIDTH28', input port 'exp_common[0]' is connected directly to output port 'exp_out[0]'. (LINT-29)
+1

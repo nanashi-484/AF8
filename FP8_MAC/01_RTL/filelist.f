@@ -1,3 +1,3 @@
-FP8_MAC.sv
-./PATTERN.sv
-./TESTBED.sv
+../01_RTL/FP8_MAC.sv
+PATTERN.sv
+TESTBED.sv

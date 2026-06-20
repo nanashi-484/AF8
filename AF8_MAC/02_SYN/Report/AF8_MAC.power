@@ -1,0 +1,53 @@
+ 
+****************************************
+Report : power
+        -analysis_effort low
+Design : AF8_MAC
+Version: R-2020.09
+Date   : Sat May 23 16:01:50 2026
+****************************************
+
+
+Library(s) Used:
+
+    sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c (File: /CAD/CBDK_TSMC40_Arm_f2.0/CIC/SynopsysDC/db/sc9_base_rvt/sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c.db)
+
+
+Operating Conditions: tt_typical_max_0p90v_25c   Library: sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+Wire Load Model Mode: top
+
+Design        Wire Load Model            Library
+------------------------------------------------
+AF8_MAC                Small             sc9_cln40g_base_rvt_tt_typical_max_0p90v_25c
+
+
+Global Operating Voltage = 0.9  
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1uW
+
+
+  Cell Internal Power  =  30.7456 uW   (37%)
+  Net Switching Power  =  53.2238 uW   (63%)
+                         ---------
+Total Dynamic Power    =  83.9694 uW  (100%)
+
+Cell Leakage Power     =  11.3986 uW
+
+
+                 Internal         Switching           Leakage            Total
+Power Group      Power            Power               Power              Power   (   %    )  Attrs
+--------------------------------------------------------------------------------------------------
+io_pad             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+memory             0.0000            0.0000            0.0000            0.0000  (   0.00%)
+black_box          0.0000            0.0000            0.0000            0.0000  (   0.00%)
+clock_network      0.0000            0.0000            0.0000            0.0000  (   0.00%)
+register       1.3414e-02        3.9845e-04            0.9023        1.4714e-02  (  15.43%)
+sequential         0.0000            0.0000            0.0000            0.0000  (   0.00%)
+combinational  1.7332e-02        5.2825e-02           10.4964        8.0654e-02  (  84.57%)
+--------------------------------------------------------------------------------------------------
+Total          3.0746e-02 mW     5.3224e-02 mW        11.3986 uW     9.5368e-02 mW
+1
